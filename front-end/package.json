@@ -14,12 +14,13 @@
     "babel-plugin-react-compiler": "^0.0.0-experimental-938cd9a-20240601",
     "next": "15.0.0-rc.0",
     "react": "19.0.0-rc-1434af3d22-20240618",
-    "react-dom": "19.0.0-rc-1434af3d22-20240618"
+    "react-dom": "19.0.0-rc-1434af3d22-20240618",
+    "react-icons": "^5.2.1"
   },
   "devDependencies": {
     "@types/node": "^20",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
+    "@types/react": "npm:types-react@rc",
+    "@types/react-dom": "npm:types-react-dom@rc",
     "eslint": "^8",
     "eslint-config-next": "15.0.0-rc.0",
     "postcss": "^8",

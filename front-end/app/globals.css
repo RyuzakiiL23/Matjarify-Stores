@@ -1,3 +1,21 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* @font-face {
+    font-family: apercu;
+    src: url(@/public/Apercu.otf);
+} */
+/* .apercu {
+    font-family: apercu;
+    font-weight: 900;
+}
+
+@font-face {
+    font-family: apercu-bold;
+    src: url(@/public/Apercu-Bold.otf);
+}
+.apercu {
+    font-family: apercu-bold;
+    font-weight: 900px;
+} */
