@@ -19,6 +19,8 @@ export default function page() {
             <li className='w-full text-blue-500 bg-secondary'>secondary</li>
             <br />
             <li className='w-full text-blue-500 bg-input'>input</li>
+            <br />
+            <li className='w-full text-blue-500 bg-border'>border</li>
         </ul>
     </div>
   )

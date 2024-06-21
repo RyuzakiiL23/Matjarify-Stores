@@ -5,7 +5,7 @@ export default function Hero() {
   return (
     <div className="bg-secbackground cursor-pointer w-full h-fit  relative">
       <div className="pt-20 flex gap-4 items-center text-primary justify-center">
-        <p>Site of the Day</p>
+        <p>Store of the Day</p>
         <p className=" border-border border font-semibold rounded px-2">
           Jun 20, 2024
         </p>
