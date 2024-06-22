@@ -36,10 +36,10 @@ export default function Assistance() {
           Ask for Assistance.
         </h1>
       </div>
-      <div className="lg:grid grid-cols-2 2xl:grid-cols-3">
-        {data.map((item, index) => (
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        {data.slice(0, screenWidth.width < 1025 ? 2 : screenWidth.width < 1280 ? 3 : 4 ).map((item, index) => (
           <div key={index} className="relative h-fit w-full mt-10 px-4">
-            <div className="relative block lg:h-[32vw] 2xl:h-[23vw] h-[65vw] w-full rounded-lg ">
+            <div className="relative block md:h-[32vw] lg:h-[23vw] xl:h-[16vw] h-[65vw] w-full rounded-lg ">
               <Image
                 src={item.img}
                 // height={400}
