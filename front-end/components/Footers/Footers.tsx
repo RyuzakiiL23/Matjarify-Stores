@@ -17,7 +17,7 @@ function Footer() {
           <div
             className={`text-4xl md:text-6xl mt-10 text-primary font-extrabold `}
           >
-            Matjarify Store
+            Matjarify Stores
           </div>
         </ul>
         <ul

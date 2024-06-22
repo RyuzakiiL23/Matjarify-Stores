@@ -1,9 +1,10 @@
 import { FaBars, FaMagnifyingGlass, FaUser } from "react-icons/fa6";
+import NavMenu from "./NavMenu";
 export default function NavBar() {
   return (
     <div className="flex items-center gap-4 md:h-16 h-14 text-primary px-4 py-1.5 lg:px-14">
         <div className="xl:hidden">
-            <FaBars className="cursor-pointer text-xl"/>
+            <NavMenu/>
         </div>
         <div>
             <h1 className="cursor-pointer font-extrabold text-2xl">M</h1>
