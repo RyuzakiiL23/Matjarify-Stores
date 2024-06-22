@@ -5,6 +5,7 @@ import Hero from "@/components/Home/Hero/Hero";
 import NewSection from "@/components/Home/New/NewSection";
 import Popular from "@/components/Home/Popular/Popular";
 import Subscriptions from "@/components/Home/Subsciriptions/Subscriptions";
+import Templates from "@/components/Home/Templates/Templates";
 import Trending from "@/components/Home/Trending/Trending";
 import Image from "next/image";
 
@@ -17,8 +18,9 @@ export default function Home() {
      <Assistance />
      <NewSection />
      <Branding/>
-     <Blog />
+     <Templates />
      <Subscriptions />
+     <Blog />
     </div>
   );
 }
