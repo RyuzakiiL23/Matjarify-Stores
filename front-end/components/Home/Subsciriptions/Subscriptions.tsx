@@ -14,13 +14,13 @@ export default function Subscriptions() {
       title: "Submit for a Subscription",
       img: "/member.jpg",
       description:
-        "Get the full features of our platform by subscribing to a plan & more ...",
+        "Get the full features of our platform by subscribing to a plan",
       btn: "Subscribe",
     },
   ];
 
   return (
-    <div className="grid lg:grid-cols-2">
+    <div className="grid lg:grid-cols-2 mb-40">
       {data.map((item, index) => (
         <div key={index} className="relative h-fit w-full mt-10 px-4">
           <div className="relative block lg:h-[32vw] h-[320px] w-full rounded-lg ">
@@ -37,7 +37,7 @@ export default function Subscriptions() {
               <div className="flex flex-col justify-between h-full">
                 <h1>{item.title}</h1>
                 <p className="text-2xl sm:text-3xl md:text-4xl 2xl:text-5xl font-bold">{item.description}</p>
-                <button className="px-6 sm:text-xl 2xl:text-2xl py-3 bottom-0 border w-fit rounded-lg">
+                <button className="px-6 sm:text-xl 2xl:text-2xl py-3 bottom-0 border w-fit rounded-lg hover:bg-secbackground hover:text-primary duration-200 ease-out">
                   {item.btn}
                 </button>
                 <p>Got questions? Read our FAQs</p>
