@@ -1,14 +1,15 @@
 import { FaBars, FaMagnifyingGlass, FaUser } from "react-icons/fa6";
 import NavMenu from "./NavMenu";
+import Link from "next/link";
 export default function NavBar() {
   return (
     <div className="flex items-center gap-4 md:h-16 h-14 text-primary px-4 py-1.5 lg:px-14">
         <div className="xl:hidden">
             <NavMenu/>
         </div>
-        <div>
+        <Link href="/">
             <h1 className="cursor-pointer font-extrabold text-2xl">M</h1>
-        </div>
+        </Link>
         <div className="xl:flex hidden gap-4 px-8 font-bold">
             <p className="cursor-pointer hover:opacity-70 duration-200">Trending</p>
             <p className="cursor-pointer hover:opacity-70 duration-200">Popular</p>
