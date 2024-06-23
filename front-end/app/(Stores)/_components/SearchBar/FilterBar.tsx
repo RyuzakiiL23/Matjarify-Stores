@@ -26,7 +26,7 @@ export default function FilterBar() {
   ];
   return (
     <div className="pt-20">
-      <div className="flex lg:flex-row flex-col bg-input items-center text-primary mx-4 md:mx-14 rounded-lg px-1 lg:px-14">
+      <div className="flex lg:flex-row flex-col bg-input items-center text-primary mx-4 lg:mx-14 rounded-lg px-1 lg:px-14">
         <ul className="grid grid-cols-2 lg:flex w-full p-2 gap-2">
           {filters.map((item, index) => (
             <li
@@ -52,7 +52,7 @@ export default function FilterBar() {
           </li>
         </ul>
       </div>
-      <div className="flex my-6 w-full justify-between items-center md:px-12">
+      <div className="flex mt-6 w-full justify-between items-center lg:px-12">
         <div className="px-4 flex gap-4 text-primary">
           <p className="font-light">
             Storers{" "}
