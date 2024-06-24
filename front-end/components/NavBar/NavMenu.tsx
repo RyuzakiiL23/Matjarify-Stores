@@ -29,8 +29,8 @@ export default function NavMenu() {
       <div className={`absolute top-20 left-0 w-full h-full z-50`}>
         <div
           className={`bg-secbackground w-screen ${
-            open ? "h-full overflow-auto " : " delay-150 h-0"
-          } transition-all  duration-300 ease-out flex flex-col justify-between fixed top-14 left-0 z-50`}
+            open ? "h-full " : " delay-150 h-0"
+          } transition-all overflow-auto duration-300 ease-out flex flex-col justify-between fixed top-14 left-0 z-50`}
         >
           <div className={`flex flex-col gap-4 p-4`}>
             <p
