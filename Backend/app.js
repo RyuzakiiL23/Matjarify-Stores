@@ -10,6 +10,10 @@ app.get('/', async (req, res) => {
   return res.status(200).json({name: 'hello world'});
 });
 
+app.get('*', async (req, res) => {
+    return res.status(401).json({message: 'No URI for that!'});
+  });
+
 sequelize.sync({ alter: true }).then(() => {
   app.listen(APP_PORT, () => {
     console.log(`Server is running on port ${APP_PORT}`);
