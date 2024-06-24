@@ -11,7 +11,10 @@ const Subcategory = sequelize.define('Subcategory', {
     image: {
         type:  DataTypes.STRING(128)
     },
-    store_id: DataTypes.INTEGER
+    store_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+    }
 }, {
     tableName: 'subcategories'
 });

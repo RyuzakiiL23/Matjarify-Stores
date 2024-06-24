@@ -9,7 +9,10 @@ const Product = sequelize.define('Product', {
     image: DataTypes.STRING(128),
     condition: DataTypes.BOOLEAN,
     discount: DataTypes.FLOAT,
-    sub_category_id: DataTypes.INTEGER,
+    sub_category_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+    },
 },{
     tableName: 'products'
 });
