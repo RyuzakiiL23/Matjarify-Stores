@@ -62,10 +62,9 @@ export default function AllStores() {
     <div className=" mb-20 lg:px-10">
       <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {data.flatMap((item, index) =>
-          data.flatMap((subItem, subIndex) =>
             data.map((subSubItem, subSubIndex) => (
               <div
-                key={`${index}-${subIndex}-${subSubIndex}`}
+                key={`${index}--${subSubIndex}`}
                 className="relative h-fit w-full mt-10 px-4"
               >
                 <div className="relative block md:h-[32vw] lg:h-[23vw] xl:h-[16vw] h-[65vw] w-full rounded-lg">
@@ -100,7 +99,7 @@ export default function AllStores() {
               </div>
             ))
           )
-        )}
+        }
       </div>
     </div>
   );
