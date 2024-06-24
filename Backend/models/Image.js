@@ -6,7 +6,8 @@ const Image = sequelize.define('Image', {
         type: DataTypes.STRING(128)
     },
     product_id: {
-        type:  DataTypes.INTEGER
+        type: DataTypes.INTEGER,
+        allowNull: false,
     }
 }, {
     tableName: 'images'

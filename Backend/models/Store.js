@@ -11,7 +11,10 @@ const Store = sequelize.define('Store', {
     image: {
         type:  DataTypes.STRING(128)
     },
-    category_id: DataTypes.INTEGER,
+    category_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+    },
     admin: DataTypes.INTEGER,
 
 }, {

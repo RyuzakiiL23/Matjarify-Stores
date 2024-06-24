@@ -21,7 +21,8 @@ const Address = sequelize.define('Address', {
         type: DataTypes.STRING(30)
     },
     user_id: {
-        type:  DataTypes.INTEGER
+        type: DataTypes.INTEGER,
+        allowNull: false,
     }
 }, {
     tableName: 'addresses'

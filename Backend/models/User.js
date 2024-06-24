@@ -15,7 +15,7 @@ const User = sequelize.define('User', {
     password: {
         type: DataTypes.STRING(128)
     },
-    is_admin: DataTypes.BOOLEAN,
+    seller: DataTypes.BOOLEAN,
     phone: DataTypes.STRING(20),
     profile_image: DataTypes.STRING(50),
     address: DataTypes.STRING(50),

@@ -11,7 +11,10 @@ const Subscription = sequelize.define('Subscription', {
     status: {
         type:  DataTypes.STRING(20)
     },
-    store_id: DataTypes.INTEGER,
+    store_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+    },
 
 }, {
     tableName: 'subscriptions'

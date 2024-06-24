@@ -2,8 +2,14 @@ const { DataTypes } = require('sequelize');
 const sequelize = require('../config/database');
 
 const Order = sequelize.define('Order', {
-    user_id: DataTypes.INTEGER,
-    store_id: DataTypes.INTEGER
+    user_id:{
+        type: DataTypes.INTEGER,
+        allowNull: false,
+    },
+    store_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+    }
 },{
     tableName: 'orders'
 });
