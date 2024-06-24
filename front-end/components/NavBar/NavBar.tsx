@@ -1,6 +1,7 @@
 import { FaBars, FaMagnifyingGlass, FaUser } from "react-icons/fa6";
 import NavMenu from "./NavMenu";
 import Link from "next/link";
+import LogIn from "../Auth/LogIn";
 export default function NavBar() {
   return (
     <div className="flex items-center gap-4 md:h-16 h-14 text-primary px-4 py-1.5 lg:px-14">
@@ -27,7 +28,7 @@ export default function NavBar() {
         <div className="flex items-center gap-8">
             <FaUser className="text-xl cursor-pointer xs:hidden"/>
             <div className="xs:flex hidden ">
-                <p className="w-16 font-bold cursor-pointer">Log in</p>
+                <LogIn/>
                 <p className="w-16 font-bold cursor-pointer">Sign Up</p>
             </div>
             <div className="hidden lg:flex gap-4">

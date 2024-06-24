@@ -32,7 +32,7 @@ export default function NavMenu() {
             open ? "h-full " : " delay-150 h-0"
           } transition-all overflow-auto duration-300 ease-out flex flex-col justify-between fixed top-14 left-0 z-50`}
         >
-          <div className={`flex flex-col gap-4 p-4`}>
+          <div className={`flex flex-col gap-4 p-4 lg:px-14`}>
             <p
               className={` ${
                 open ? "ml-0" : "ml-[-100]"
@@ -83,7 +83,7 @@ export default function NavMenu() {
               Templates
             </p>
           </div>
-          <div className={`${open ? "ml-0" : "ml-[-400] md:ml-[-1000]"} duration-300 p-4 pb-10`}>
+          <div className={`${open ? "ml-0" : "ml-[-400] md:ml-[-1000]"} duration-300 p-4 lg:px-14 pb-10`}>
             <div className="flex flex-col md:relative md:flex-row-reverse">
               <ul className="md:w-1/3">
                 <div
