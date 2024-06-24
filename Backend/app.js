@@ -50,8 +50,11 @@ app.get('*', async (req, res) => {
   });
 
 sequelize.sync({ alter: true }).then(() => {
-  app.listen(APP_PORT, () => {
+  app.listen(APP_PORT, '0.0.0.0', () => {
     console.log(`Server is running on port ${APP_PORT}`);
   });
   console.log('Database & tables created!');
 });
+
+module.exports = app;
+
