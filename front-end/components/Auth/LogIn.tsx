@@ -24,7 +24,7 @@ export default function LogIn() {
     <div className="">
       <p
         onClick={() => setOpen(true)}
-        className="w-16 font-bold cursor-pointer"
+        className="w-16 font-bold cursor-pointer "
       >
         Log in
       </p>
