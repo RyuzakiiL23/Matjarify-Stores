@@ -1,7 +1,14 @@
-import { FaBars, FaMagnifyingGlass, FaUser } from "react-icons/fa6";
+'use client';
+import { FaMagnifyingGlass, FaUser } from "react-icons/fa6";
 import NavMenu from "./NavMenu";
 import Link from "next/link";
+import { useDispatch } from "react-redux";
+import { SignUpOpen, LogInOpen } from "@/lib/features/LogInDialogSlice";
+import LogIn from "../Auth/LogIn";
+
+
 export default function NavBar() {
+    const dispatch = useDispatch();
   return (
     <div className="flex items-center gap-4 md:h-16 h-14 text-primary px-4 py-1.5 lg:px-14">
         <div className="xl:hidden">
@@ -25,10 +32,11 @@ export default function NavBar() {
             <p>Search</p>
         </div>
         <div className="flex items-center gap-8">
+            <LogIn/>
             <FaUser className="text-xl cursor-pointer xs:hidden"/>
             <div className="xs:flex hidden ">
-                <p className="w-16 font-bold cursor-pointer">Log In</p>
-                <p className="w-16 font-bold cursor-pointer">Sign Up</p>
+                <p onClick={() => dispatch(LogInOpen())} className="w-16 font-bold cursor-pointer">Log In</p>
+                <p onClick={() => dispatch(SignUpOpen())} className="w-16 font-bold cursor-pointer">Sign Up</p>
             </div>
             <div className="hidden lg:flex gap-4">
                 <button className="h-11 w-28  bg-primary hover:bg-opacity-90 duration-300 text-white px-2 rounded-lg">Subscribe</button>

@@ -1,12 +1,15 @@
 "use client";
+import { RootState } from "@/lib/store";
 import React, { useEffect } from "react";
-import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { SignUpOpen, LogInOpen, SignUpClose } from "@/lib/features/LogInDialogSlice";
 
 export default function LogIn() {
-  const [open, setOpen] = useState(false);
-  const [tabState, setTabState] = useState<"login" | "signup">("login");
+  const dispatch = useDispatch();
+  const logInState = useSelector((state: RootState) => state.logInDialog.logInDialog);
+  
   useEffect(() => {
-    if (open) {
+    if (logInState === 'LogIn' || logInState === 'SignUp' ) {
       document.body.classList.add("overflow-hidden");
     } else {
       document.body.classList.remove("overflow-hidden");
@@ -16,24 +19,19 @@ export default function LogIn() {
     return () => {
       document.body.classList.remove("overflow-hidden");
     };
-  }, [open]);
+  }, [logInState]);
 
   const handleChildClick = (event: React.MouseEvent<HTMLDivElement>) => {
     event.stopPropagation();
   };
   return (
     <div className="">
-      <p
-        onClick={() => setOpen(true)}
-        className="w-16 font-bold cursor-pointer "
-      >
-        Log in
-      </p>
+
       <div
         className={` top-0 right-0 left-0 bg-primary/90 h-screen shadow-lg px-4 py-2 sm:p-2 ${
-          open ? "absolute" : "hidden"
+          logInState ? "absolute" : "hidden"
         }`}
-        onClick={() => setOpen(false)}
+        // onClick={() => setOpen(false)}
       >
         <div
           onClick={handleChildClick}
@@ -145,13 +143,13 @@ export default function LogIn() {
           </div>
           <div
             className={`hidden absolute ${
-              tabState === "login" ? " translate-x-full" : "  translate-x-0"
+              logInState === "LogIn" ? " translate-x-full" : "  translate-x-0"
             } lg:flex w-1/2 bg-secondary h-full transition-all duration-300 ease-in-out`}
           >
             dont have an account yet?
             <div 
               onClick={() =>
-                setTabState(tabState === "login" ? "signup" : "login")
+                dispatch(logInState === 'LogIn' ? SignUpOpen() : LogInOpen()) 
               }
               className="relative group cursor-pointer h-fit"
             >
@@ -160,6 +158,7 @@ export default function LogIn() {
               </p>
               <span className=" border-t group-hover:w-full duration-300 ease-out group-hover:border-trdbackground/100 border-trdbackground/0 w-[0px] top-6 absolute" />
             </div>
+            <div onClick={() => dispatch(SignUpClose())}>close</div>
           </div>
         </div>
       </div>
