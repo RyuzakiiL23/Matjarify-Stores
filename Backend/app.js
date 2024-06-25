@@ -1,8 +1,10 @@
 const express = require('express');
 const { sequelize, User, Store, Category } = require('./models');
 
+require('dotenv').config();
 
 const app = express();
+
 app.use(express.json());
 const APP_PORT = process.env.PORT || 8000;
 
@@ -11,11 +13,15 @@ app.get('/', async (req, res) => {
 });
 
 // app.post('/users', async (req, res) => {
-//   const data = req.body;
+//   try{
+//     const data = req.body;
 
 //   const user = await User.create(data);
 
 //   res.status(200).json(user);
+//   }catch (error){
+//     res.status(400).json(error.message);
+//   }
 // });
 
 // app.post('/store', async (req, res) => {
@@ -49,9 +55,7 @@ app.get('*', async (req, res) => {
     return res.status(401).json({message: 'No URI for that!'});
   });
 
-sequelize.sync({ alter: true }).then(() => {
-  app.listen(APP_PORT, () => {
-    console.log(`Server is running on port ${APP_PORT}`);
-  });
-  console.log('Database & tables created!');
+
+app.listen(APP_PORT, () => {
+  console.log(`Server is running on port ${APP_PORT}`);
 });
