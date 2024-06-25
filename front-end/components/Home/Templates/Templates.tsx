@@ -57,7 +57,7 @@ export default function Templates() {
                   <p className="md:flex font-bold text-primary border-b-2 border-border ">
                     {item.user}
                   </p>
-                  <div className="border-t border group-hover:w-full duration-300 ease-out border-trdbackground w-0 bottom-0 absolute"></div>
+                  <div className="border group-hover:w-full duration-300 ease-out group-hover:border-trdbackground/100 border-trdbackground/0 w-0 bottom-0 absolute"></div>
                 </div>
               </div>
             </div>
@@ -73,7 +73,7 @@ export default function Templates() {
             <p className="md:flex font-bold text-lg text-primary border-b-2 border-border ">
               All Templates 
             </p>
-            <div className="border-t border group-hover:w-full duration-300 ease-out border-trdbackground w-0 bottom-0 absolute"></div>
+            <div className="border group-hover:w-full duration-300 ease-out group-hover:border-trdbackground/100 border-trdbackground/0 w-0 bottom-0 absolute"></div>
           </div>
         </div>
       </div>

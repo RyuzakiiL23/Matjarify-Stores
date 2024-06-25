@@ -74,7 +74,7 @@ export default function Popular() {
                   <p className="md:flex font-bold text-primary border-b-2 border-border ">
                     {item.user}
                   </p>
-                  <div className="border-t border group-hover:w-full duration-300 ease-out border-trdbackground w-0 bottom-0 absolute"></div>
+                  <div className="border group-hover:w-full duration-300 ease-out group-hover:border-trdbackground/100 border-trdbackground/0 w-0 bottom-0 absolute"></div>
                 </div>
                   <p className="text-[10px] border rounded-full px-1 border-trdbackground">PRO</p>
               </div>
@@ -91,7 +91,7 @@ export default function Popular() {
             <p className="md:flex font-bold text-lg text-primary border-b-2 border-border ">
               View Popular Stores
             </p>
-            <div className="border-t border group-hover:w-full duration-300 ease-out border-trdbackground w-0 bottom-0 absolute"></div>
+            <div className="border group-hover:w-full duration-300 ease-out group-hover:border-trdbackground/100 border-trdbackground/0 w-0 bottom-0 absolute"></div>
           </div>
         </div>
       </div>
