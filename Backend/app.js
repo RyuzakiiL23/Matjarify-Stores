@@ -55,7 +55,9 @@ app.get('*', async (req, res) => {
     return res.status(401).json({message: 'No URI for that!'});
   });
 
-
 app.listen(APP_PORT, () => {
   console.log(`Server is running on port ${APP_PORT}`);
 });
+
+module.exports = app;
+
