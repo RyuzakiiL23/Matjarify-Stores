@@ -34,7 +34,9 @@ export default function NavBar() {
         <p className="cursor-pointer hover:opacity-70 duration-200">Trending</p>
         <p className="cursor-pointer hover:opacity-70 duration-200">Popular</p>
         <p className="cursor-pointer hover:opacity-70 duration-200">New</p>
+        <Link href={'/AllStores'}>
         <p className="cursor-pointer hover:opacity-70 duration-200">All</p>
+        </Link>
         <p className="cursor-pointer hover:opacity-70 duration-200">Blogs</p>
         <p className="cursor-pointer hover:opacity-70 duration-200">
           Templates
