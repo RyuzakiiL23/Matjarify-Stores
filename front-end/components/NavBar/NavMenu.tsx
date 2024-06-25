@@ -26,7 +26,7 @@ export default function NavMenu() {
         onClick={() => setOpen(!open)}
         className="cursor-pointer text-xl"
       />
-      <div className={`absolute top-20 left-0 w-full h-full z-50`}>
+      <div className={`${open ? 'absolute top-20 left-0 w-full h-full z-50' : ''}`}>
         <div
           className={`bg-secbackground w-screen ${
             open ? "h-full " : " delay-150 h-0"
