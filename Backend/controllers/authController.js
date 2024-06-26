@@ -1,9 +1,15 @@
 const { User, sequelize } = require('../models');
 const bcrypt = require("bcrypt");
 const jwt = require('jsonwebtoken');
+const { validationResult } = require('express-validator');
 
 
 const register = async (req, res) => {
+    const errors = validationResult(req);
+    if(!errors.isEmpty()){
+        return res.status(400).json({errors: errors.array()});
+    }
+
     const { firstName, lastName, email, password, confirmPassword} = req.body;
     const secretKey = process.env.TOKEN_SECRET_KEY;
 
@@ -48,15 +54,20 @@ const register = async (req, res) => {
             maxAge: 3600000 * 24 * 7 // 7days
         });
 
-        res.status(200).json({name: user.firstName ,email: user.email});
+        return res.status(200).json({name: user.firstName ,email: user.email});
 
     }catch (error){
         await transaction.rollback();
-        res.status(400).json({message: "something went wrrong"});
+        return res.status(400).json({message: "something went wrrong"});
     }
 }
 
 const login = async (req, res) => {
+    const errors = validationResult(req);
+    if(!errors.isEmpty()){
+        return res.status(400).json(errors.array());
+    }
+
     const { email, password } = req.body;
     const secretKey = process.env.TOKEN_SECRET_KEY;
 
@@ -68,7 +79,7 @@ const login = async (req, res) => {
         const user = await User.findOne({where: {email}});
 
         if (!user){
-            res.status(400).json({message: 'Email or password incorrect'});
+            return res.status(400).json({message: 'Email or password incorrect'});
         }
 
         const matchPass = await bcrypt.compare(password, user.password);
@@ -90,10 +101,10 @@ const login = async (req, res) => {
             maxAge: 3600000 * 24 * 7
         });
 
-        res.status(200).json({name: user.firstName ,email: user.email});
+        return res.status(200).json({name: user.firstName ,email: user.email});
         
     }catch (error){
-        res.status(400).json({message: "something went wrrong"});
+        return res.status(400).json({message: "something went wrrong"});
     }
 }
 
