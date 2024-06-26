@@ -35,7 +35,7 @@ export default function FilterBar() {
             >
               <p className="relative w-max ">
                 {item.name}
-                <FaAngleDown className="absolute font-light right-[-17] h-3 top-[5]" />
+                <FaAngleDown className="absolute font-light h-3 right-[-18px] top-[4px]" />
               </p>
             </li>
           ))}
@@ -47,7 +47,7 @@ export default function FilterBar() {
           <li className="bg-background text-sm font-semibold rounded-lg p-3 w-full lg:w-28">
             <p className="relative w-max">
               Reset filter
-              <RxReset className="absolute right-[-20] h-5 top-[0]" />
+              <RxReset className="absolute h-5 right-[-20px] top-0" />
             </p>
           </li>
         </ul>
