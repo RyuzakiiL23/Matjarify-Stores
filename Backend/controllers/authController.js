@@ -39,11 +39,13 @@ const register = async (req, res) => {
             role: user.role
         },
         secretKey,
-        {expiresIn: "1h"});
+        {expiresIn: "168h"});
 
         res.cookie('token', token, {
             httpOnly: true,
-            maxAge: 3600000, // 1h
+            sameSite: 'None',
+            // secure: true // only prod 'https'
+            maxAge: 3600000 * 24 * 7 // 7days
         });
 
         res.status(200).json({name: user.firstName ,email: user.email});
@@ -79,11 +81,13 @@ const login = async (req, res) => {
             user_id: user.id,
             email: user.email,
             role: user.role
-        }, secretKey, {expiresIn: "1h"});
+        }, secretKey, {expiresIn: "168h"});
 
         res.cookie('token', token, {
             httpOnly: true,
-            maxAge: 3600000
+            sameSite: 'None',
+            // secure: true // only prod 'https'
+            maxAge: 3600000 * 24 * 7
         });
 
         res.status(200).json({name: user.firstName ,email: user.email});
