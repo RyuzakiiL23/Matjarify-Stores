@@ -99,7 +99,7 @@ export default function LogIn() {
               </div>
             </div>
             <div className="flex flex-col gap-4">
-              <p className="w-full text-center mb-10">Or sign in with</p>
+              <p className="w-full text-center ">Or sign in with</p>
               <div className="flex gap-3">
                 <button className=" h-14 bg-background w-full rounded-lg border-border border ">
                   Google
@@ -151,28 +151,28 @@ export default function LogIn() {
                 type="text"
                 placeholder="Full Name"
                 name="fullName"
-                className="w-full h-10 bg-input p-2 rounded-lg my-4"
+                className="w-full h-10 bg-input p-2 rounded-lg mb-2"
               />
               <label htmlFor="email">Email</label>
               <input
                 type="email"
                 placeholder="Email"
                 name="email"
-                className="w-full h-10 bg-input p-2 rounded-lg my-4"
+                className="w-full h-10 bg-input p-2 rounded-lg mb-2"
               />
               <label htmlFor="password">Password</label>
               <input
                 type="password"
                 name="password"
                 placeholder="Password"
-                className="w-full h-10 bg-input p-2 rounded-lg my-4"
+                className="w-full h-10 bg-input p-2 rounded-lg mb-2"
               />
               <label htmlFor="confirmPass">Confirm Password</label>
               <input
                 type="password"
                 name="confirmPass"
                 placeholder="Confirm Password"
-                className="w-full h-10 bg-input p-2 rounded-lg my-4"
+                className="w-full h-10 bg-input p-2 rounded-lg mb-2"
               />
               <button className="w-full h-14 bg-primary text-secondary rounded-lg">
                 Log In
@@ -198,7 +198,7 @@ export default function LogIn() {
               </div>
             </div>
             <div className="flex flex-col gap-4">
-              <p className="w-full text-center mb-10">Or sign in with</p>
+              <p className="w-full text-center ">Or sign in with</p>
               <div className="flex gap-3">
                 <button className=" h-14 bg-background w-full rounded-lg border-border border ">
                   Google
