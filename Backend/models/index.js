@@ -35,9 +35,9 @@ Store.hasMany(Subcategory, {foreignKey: 'store_id', as: 'subcategories'});
 Subcategory.hasMany(Product, {foreignKey: 'sub_category_id', as: 'products'});
 Subcategory.belongsTo(Store, {foreignKey: 'store_id', as: 'store'})
 
-User.hasMany(Order, {foreignKey: 'user_id', as: 'orders'});
-User.hasMany(Store, {as: 'stores', foreignKey: 'admin'});
-User.hasMany(Address, {as: 'addresses', foreignKey: 'user_id'});
+User.hasMany(Order, {foreignKey: 'user_id', as: 'orders', onDelete: 'CASCADE'});
+User.hasMany(Store, {as: 'stores', foreignKey: 'admin', onDelete: 'CASCADE'});
+User.hasMany(Address, {as: 'addresses', foreignKey: 'user_id', onDelete: 'CASCADE'});
 
 
 module.exports = {
