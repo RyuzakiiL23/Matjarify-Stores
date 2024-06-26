@@ -43,10 +43,10 @@ const register = async (req, res) => {
 
         res.cookie('token', token, {
             httpOnly: true,
-            ageMax: 3600000, // 1h
+            maxAge: 3600000, // 1h
         });
 
-        res.status(200).json({email: user.email});
+        res.status(200).json({name: user.firstName ,email: user.email});
 
     }catch (error){
         await transaction.rollback();
@@ -56,9 +56,50 @@ const register = async (req, res) => {
 
 const login = async (req, res) => {
     const { email, password } = req.body;
+    const secretKey = process.env.TOKEN_SECRET_KEY;
+
+    if (!secretKey) {
+        return res.status(500).json({ message: "Secret key not configured" });
+    }
+
+    try{
+        const user = await User.findOne({where: {email}});
+
+        if (!user){
+            res.status(400).json({message: 'Email or password incorrect'});
+        }
+
+        const matchPass = await bcrypt.compare(password, user.password);
+
+        if (!matchPass) {
+            return res.status(400).json({ message: 'Email or password incorrect' });
+        }
+
+        const token = jwt.sign({
+            user_id: user.id,
+            email: user.email,
+            role: user.role
+        }, secretKey, {expiresIn: "1h"});
+
+        res.cookie('token', token, {
+            httpOnly: true,
+            maxAge: 3600000
+        });
+
+        res.status(200).json({name: user.firstName ,email: user.email});
+        
+    }catch (error){
+        res.status(400).json({message: "something went wrrong"});
+    }
 }
+
+const logout = async(req, res) => {
+    res.clearCookie('token');
+    res.status(200).json({ message: "Logged out successfully" });
+};
 
 module.exports = {
     register,
-    login
+    login,
+    logout
 }
