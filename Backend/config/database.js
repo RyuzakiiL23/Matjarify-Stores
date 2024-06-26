@@ -21,8 +21,4 @@ const sequelize = new Sequelize(`mysql://${USER_NAME}:${PASSWORD}@${DATABASE_HOS
 //      }
 //  });
 
-sequelize.sync({ alter: true }).then(() => {
-  console.log('Database & tables created!');
-});
-
 module.exports = sequelize;
