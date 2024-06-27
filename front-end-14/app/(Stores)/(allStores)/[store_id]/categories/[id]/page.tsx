@@ -1,15 +1,18 @@
+'use client';
 import Image from "next/image";
 import Link from "next/link";
+import { useParams } from "next/navigation";
 import React from "react";
 import { GoDotFill } from "react-icons/go";
 
-export default function page({ params }: { params: { id: string } }) {
+export default function Page() {
+  const params = useParams<{store_id: 'string', id: 'string'}>()
   const productObj = {
     name: "Product 6",
     brand: "SKILLCHAIRS",
     price: "2,999.00 dh",
-    image1: "/Chaise1.webp",
-    image2: "/Chaise2.webp",
+    image1: "/public/Chaise1.webp",
+    image2: "/public/Chaise2.webp",
     link: "/product/6",
     availability: true,
     discount: "500.00 dh",
@@ -26,7 +29,7 @@ export default function page({ params }: { params: { id: string } }) {
       </div>
       <div className="flex gap-2 flex-wrap">
         {products.map((product) => (
-          <Link href='/products/6'
+          <Link href={`/${params.store_id}/products/6`}
             key={product.name}
             className=" my-8 h-full p-2 relative bg-card border overflow-hidden group cursor-default"
           >

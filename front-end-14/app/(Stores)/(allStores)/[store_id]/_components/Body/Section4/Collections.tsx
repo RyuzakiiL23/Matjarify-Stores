@@ -1,9 +1,12 @@
+'use client';
 import Image from "next/image";
 import Link from "next/link";
+import { useParams } from "next/navigation";
 import React from "react";
 import { GoDotFill } from "react-icons/go";
 
 export default function Collections() {
+  const params = useParams<{ store_id: string }>()
   const products = [
     {
       name: "Product 1",
@@ -107,7 +110,7 @@ export default function Collections() {
                 <p className="text-muted">
                   {collection.description}
                 </p>
-                <Link href={`/categories/${collection.name}`}>
+                <Link href={`${params.store_id}/categories/${collection.name}`}>
                 <button className="mt-4 bg-primary text-white py-2 font-semibold px-4">
                   voir plus
                 </button>
@@ -124,7 +127,7 @@ export default function Collections() {
             </div>
             <div className="flex w-full m-2 justify-between h-full">
               {products.map((product) => (
-                <Link href={`/products/${product.name}`} 
+                <Link href={`${params.store_id}/products/${product.name}`} 
                   key={product.name}
                   className="w-full h-full p-2  relative bg-card border overflow-hidden group cursor-default"
                 >

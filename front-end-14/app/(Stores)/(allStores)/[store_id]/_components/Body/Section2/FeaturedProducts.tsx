@@ -1,9 +1,13 @@
+'use client';
 import Image from "next/image";
 import Link from "next/link";
+import { useParams } from "next/navigation";
 import React from "react";
 import { GoDotFill } from "react-icons/go";
 
 export default function FeaturedProducts() {
+  const params = useParams<{ store_id: string }>()
+
   const products = [
     {
       name: "Product 1",
@@ -81,7 +85,7 @@ export default function FeaturedProducts() {
       </div>
       <div className="flex justify-between h-full">
         {products.map((product) => (
-          <Link href={`/products/${product.name}`}
+          <Link href={`/${params.store_id}/products/${product.name}`}
             key={product.name}
             className="w-[400px] h-full p-2 relative bg-card border overflow-hidden group cursor-default"
           >

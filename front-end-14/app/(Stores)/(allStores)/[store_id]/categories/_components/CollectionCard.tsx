@@ -1,15 +1,18 @@
+'use client'
 import Image from "next/image";
 import "./category.css";
 import React from "react";
 import Link from "next/link";
+import { useParams } from "next/navigation";
 
 export default function CollectionCard() {
+  const params = useParams<{store_id: 'string'}>()
   const Collections = {
     name: "Collection name",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    image: "/rog.png",
-    link: "/categories/1",
+    image: "/public/rog.png",
+    link: `/${params.store_id}/categories/1`,
   };
 
   // Create an array with 20 elements

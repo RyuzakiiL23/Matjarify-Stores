@@ -1,9 +1,12 @@
+'use client';
 import Image from "next/image";
 import Link from "next/link";
+import { useParams } from "next/navigation";
 import React from "react";
 import { FaArrowRight } from "react-icons/fa";
 
 export default function PopularCollections() {
+  const params = useParams<{ store_id: string }>()
   const collections = [
     {
       name: "Collection 1",
@@ -43,7 +46,7 @@ export default function PopularCollections() {
       </h2>
       <div className="flex gap-4 justify-between">
         {collections.map((collection) => (
-          <Link href={`/categories/${collection.name}`} className="group cursor-pointer"  key={collection.name}>
+          <Link href={`${params.store_id}/categories/${collection.name}`} className="group cursor-pointer"  key={collection.name}>
             <div className="w-48 h-48 p-8 bg-border rounded-full cursor-pointer relative flex items-center justify-center overflow-hidden">
               <Image
                 src={collection.image}

@@ -13,6 +13,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import Image from "next/image";
 // import Cookies from "universal-cookie";
 import { get } from "http";
+import { useParams } from "next/navigation";
 
 interface Article {
   name: string;
@@ -24,6 +25,7 @@ interface Article {
 }
 
 function CartSheet() {
+  const params = useParams<{store_id: 'string'}>()
   // const cookies = new Cookies();
   // const cart = cookies.get("cart") || [];
   const [sheetOpen, setSheetOpen] = useState(false);
@@ -35,7 +37,7 @@ function CartSheet() {
       name: "Product 6",
       brand: "SKILLCHAIRS",
       price: "2,999.00 dh",
-      image1: "/Chaise1.webp",
+      image1: "/public/Chaise1.webp",
       link: "/product/6",
       availability: true,
       discount: "500.00 dh",
@@ -46,7 +48,7 @@ function CartSheet() {
       name: "Product 6",
       brand: "SKILLCHAIRS",
       price: "2,999.00 dh",
-      image1: "/Chaise2.webp",
+      image1: "/public/Chaise2.webp",
       link: "/product/6",
       availability: true,
       discount: "500.00 dh",
@@ -77,7 +79,7 @@ function CartSheet() {
                 key={article.id}
                 onClick={() => setSheetOpen(false)}
                 className="relative w-full cursor-pointer"
-                href={`/products/${article.name}`}
+                href={`/${params.store_id}/products/${article.name}`}
               >
                 <div className="absolute z-50 bg-cyan-400 opacity-0 hover:opacity-10 h-full w-full"></div>
                 <div className="bg-background flex border rounded-lg px-4 mb-4 relative cursor-pointer">
@@ -111,7 +113,7 @@ function CartSheet() {
           <Link
             onClick={() => setSheetOpen(false)}
             className="flex flex-col w-full mb-4"
-            href="/cart"
+            href={`/${params.store_id}/cart`}
           >
             <Button className="gap-2" variant="outline">
               Access Cart <FaCartShopping />
@@ -120,7 +122,7 @@ function CartSheet() {
           <Link
             onClick={() => setSheetOpen(false)}
             className="flex flex-col w-full"
-            href="/checkout"
+            href={`/${params.store_id}/checkout`}
           >
             <Button className="gap-2">
               Buy Now <FaMoneyCheckDollar />

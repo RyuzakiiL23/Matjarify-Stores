@@ -14,6 +14,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 // import { Context } from '@/app/layout';
 import Image from "next/image";
+import { useParams } from 'next/navigation';
 
 interface Article {
   name: string;
@@ -35,6 +36,7 @@ interface CltDetails {
 }
 
 export default function Checkout() {
+  const params = useParams<{store_id: 'string'}>()
   const [cltDetails, setCltDetails] = useState<CltDetails>({
     Prénom: '',
     Nom: '',
@@ -104,7 +106,7 @@ export default function Checkout() {
       name: "Product 6",
       brand: "SKILLCHAIRS",
       price: 2999,
-      image1: "/Chaise1.webp",
+      image1: "/public/Chaise1.webp",
       link: "/product/6",
       availability: true,
     },
@@ -113,7 +115,7 @@ export default function Checkout() {
       name: "Product 6",
       brand: "SKILLCHAIRS",
       price: 2999,
-      image1: "/Chaise2.webp",
+      image1: "/public/Chaise2.webp",
       link: "/product/6",
       availability: true,
     },
@@ -212,7 +214,7 @@ export default function Checkout() {
                 <Link
                   onClick={() => setSheetOpen(false)}
                   className="relative w-full h-2/3"
-                  href={`/shop/${article.id}`}
+                  href={`/${params.store_id}/products/${article.id}`}
                 >
                   <Image
                     src={article.image1}

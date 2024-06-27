@@ -10,25 +10,22 @@ export default function BestProducts() {
   const params = useParams<{ store_id: string }>()
   const products = [
     {
-      name: "Product 1",
+      name: "category 1",
       description:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
       image: "/public/rog.png",
-      link: `[store_id]/product/1`,
     },
     {
-      name: "Product 2",
+      name: "category 2",
       description:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
       image: "/public/rog.png",
-      link: "/product/2",
     },
     {
-      name: "Product 3",
+      name: "category 3",
       description:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
       image: "/public/rog.png",
-      link: "/product/3",
     },
   ];
   return (

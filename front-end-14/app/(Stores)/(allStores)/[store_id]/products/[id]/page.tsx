@@ -1,13 +1,17 @@
+'use client'
 import React from "react";
 import RightSide from "../_components/id/RightSide";
 import LeftSide from "../_components/id/LeftSide";
 import FeaturedProducts from "../../_components/Body/Section2/FeaturedProducts";
+import { useParams } from "next/navigation";
 // import FeaturedProducts from "@/components/Body/Section2/FeaturedProducts";
 // import DeleveryDetails from "@/components/Body/SectoinEnd/DeliveryDetails/DeliveryDetails";
 
-function SingleProduct({ params }: { params: { id: string } }) {
+function SingleProduct() {
+  const params = useParams<{store_id: 'string', id: 'string'}>()
   const product = {
     id: params.id,
+    store_id: params.store_id,
     name: "SKILLCHAIRS SC12 ETERNITY",
     description:
     "Chaise Gaming SKILLCHAIRS SC12 ETERNITY - Noir / Rouge - Simili cuir - 150 kg<br>" +
@@ -18,8 +22,8 @@ function SingleProduct({ params }: { params: { id: string } }) {
     price: 3400,
     discount: 500,
     availability: true,
-    image1: "/Chaise1.webp",
-    image2: "/Chaise2.webp",
+    image1: "/public/Chaise1.webp",
+    image2: "/public/Chaise2.webp",
   };
   return (
     <div className="my-8 lg:w-[1400px] mx-auto">

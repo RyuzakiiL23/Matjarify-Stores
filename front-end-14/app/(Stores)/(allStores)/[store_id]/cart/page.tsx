@@ -6,6 +6,7 @@ import { FaCartShopping, FaMoneyCheckDollar, FaRegTrashCan } from 'react-icons/f
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
+import { useParams } from 'next/navigation';
 
 interface Article {
   name: string,
@@ -19,6 +20,7 @@ interface Article {
 
 
 export default function Cart() {
+  const params = useParams<{store_id: 'string'}>()
 
   const [sheetOpen, setSheetOpen] = useState(false);
 
@@ -30,7 +32,7 @@ export default function Cart() {
       name: "Product 6",
       brand: "SKILLCHAIRS",
       price: "2,999.00 dh",
-      image1: "/Chaise1.webp",
+      image1: "/public/Chaise1.webp",
       link: "/product/6",
       availability: true,
       discount: "500.00 dh",
@@ -41,7 +43,7 @@ export default function Cart() {
       name: "Product 6",
       brand: "SKILLCHAIRS",
       price: "2,999.00 dh",
-      image1: "/Chaise2.webp",
+      image1: "/public/Chaise2.webp",
       link: "/product/6",
       availability: true,
       discount: "500.00 dh",
@@ -65,7 +67,7 @@ export default function Cart() {
             <div className="bg-background flex border px-4 relative" key={article.id}>
               <div className='flex w-[60%] '>
                 <div className="w-[30%] h-[150px] flex items-center justify-center cursor-default relative">
-                  <Link onClick={() => setSheetOpen(false)} className="relative w-full h-2/3" href={`/shop/${article.id}`}>
+                  <Link onClick={() => setSheetOpen(false)} className="relative w-full h-2/3" href={`/${params.store_id}/products/${article.id}`}>
                     <Image
                       src={article.image1}
                       alt={`Image for ${article.brand}`}
@@ -107,7 +109,7 @@ export default function Cart() {
             <p className='px-4'>Livraison gratuite sur tout le maroc</p>
             <p className='px-4'>3 mois de garantie magasin</p>
 
-            <Link className='flex flex-col w-full' href={"/checkout"}>
+            <Link className='flex flex-col w-full' href={`/${params.store_id}/checkout`}>
               <Button className="gap-2 m-2">Finaliser votre achat <FaMoneyCheckDollar /> </Button>
             </Link>
           </div>
