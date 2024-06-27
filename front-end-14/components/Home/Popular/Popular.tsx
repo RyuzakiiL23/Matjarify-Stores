@@ -50,10 +50,11 @@ export default function Popular() {
           Popular.
         </h1>
       </div>
-      <div className="lg:grid grid-cols-2 2xl:grid-cols-3">
+      <div className="grid sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
         {data.map((item, index) => (
           <div key={index} className="relative h-fit w-full mt-10 px-4">
-            <div className="relative cursor-pointer block lg:h-[32vw] 2xl:h-[23vw] h-[65vw] w-full rounded-lg ">
+            <div className="relative cursor-pointer block sm:h-[32vw] lg:h-[23vw] 2xl:h-[16vw] h-[65vw] w-full rounded-lg ">
+
               <Image
                 src={item.img}
                 // height={400}

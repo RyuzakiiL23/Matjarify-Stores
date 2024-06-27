@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 import { Lato } from "next/font/google";
-import "./globals.css";
-import StoreProvider from "./StoreProvider";
+import NavBar from "@/components/NavBar/NavBar";
+import Footer from "@/components/Footers/Footers";
 
 const lato = Lato({
   weight: ["400", "700", "100", "300", "900"],
   style: ["normal"],
-  subsets: ['latin']
+  subsets: ["latin"],
 });
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -19,12 +19,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <StoreProvider>
-        <body className={`${lato.className}`}>
-            {children}
-        </body>
-      </StoreProvider>
-    </html>
+    <div className="h-full relative">
+      <div className="top-0 z-50 absolute w-full">
+        <NavBar />
+      </div>
+      {children}
+      <div>
+        <Footer />
+      </div>
+    </div>
   );
 }
