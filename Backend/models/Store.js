@@ -18,7 +18,15 @@ const Store = sequelize.define('Store', {
     admin: DataTypes.INTEGER,
 
 }, {
-    tableName: 'stores'
+    tableName: 'stores',
+    indexes: [
+        {
+            fields: ['title']
+        },
+        {
+            fields: ['category_id']
+        }
+    ]
 });
 
 module.exports = Store;

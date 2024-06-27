@@ -1,6 +1,7 @@
 const express = require('express');
 const { sequelize, User, Store, Category } = require('./models');
 const cors = require('cors')
+const corsOptions = require('./config/corsOptions');
 const authRoute = require('./routes/authRoute');
 require('dotenv').config();
 const parseCookie = require('cookie-parser');
@@ -16,7 +17,7 @@ if (migrate === 'migrate'){
      });
 }
 
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(parseCookie());
 app.use(express.json());
 
