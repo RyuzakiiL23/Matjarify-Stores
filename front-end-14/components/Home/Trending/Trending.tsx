@@ -1,6 +1,7 @@
 "use client";
 import useWindowSize from "@/hooks/useWindowSize";
 import Image from "next/image";
+import Link from "next/link";
 import { FaArrowRight, FaRegBookmark } from "react-icons/fa6";
 import { ImArrowRight2, ImArrowUpRight2 } from "react-icons/im";
 
@@ -52,18 +53,30 @@ export default function Trending() {
               />
               <div className="absolute h-full w-full opacity-0 hover:opacity-100 bg-gradient-to-t from-black/50 transition-all duration-300 ease-in-out to-primary/0  ">
                 <div className="flex h-full w-full justify-center items-center">
-                  <button className="h-14 w-36 flex items-center justify-center gap-3 rounded-lg hover:bg-primary bg-background hover:text-background duration-300">
-                    <ImArrowRight2/> <span>Visit Store</span>
-                  </button>
+                  <Link
+                    target="_blank"
+                    href={`/${item.title}`}
+                    className="h-14 w-36 flex items-center justify-center gap-3 rounded-lg hover:bg-primary bg-background hover:text-background duration-300"
+                  >
+                    <ImArrowRight2 /> <span>Visit Store</span>
+                  </Link>
                   <div className="absolute justify-between bottom-0 w-full p-10 py-6">
                     <div className="flex justify-between">
                       <div>
                         <h1 className="text-background text-xl">Store Name</h1>
-                        <p className="text-background font-extrabold text-xl">{item.title}</p>
+                        <Link
+                          target="_blank"
+                          href={`/${item.title}`}
+                          className="text-background font-extrabold text-xl hover:opacity-60"
+                        >
+                          {item.title}
+                        </Link>
                       </div>
                       <div className="flex gap-4 items-end">
-                        <ImArrowUpRight2 className="text-background text-3xl hover:opacity-60 duration-150 ease-out"/>
-                        <FaRegBookmark className="text-background text-3xl hover:opacity-60 duration-150 ease-out"/>
+                        <Link target="_blank" href={`/${item.title}`}>
+                          <ImArrowUpRight2 className="text-background text-3xl hover:opacity-60 duration-150 ease-out" />
+                        </Link>
+                        <FaRegBookmark className="text-background text-3xl hover:opacity-60 duration-150 ease-out" />
                       </div>
                     </div>
                   </div>
@@ -71,7 +84,13 @@ export default function Trending() {
               </div>
             </div>
             <div className="flex gap-4 items-center mt-4">
-              <p className="font-bold text-sm cursor-pointer">{item.title}</p>
+              <Link
+                target="_blank"
+                href={`/${item.title}`}
+                className="font-bold text-sm cursor-pointer"
+              >
+                {item.title}
+              </Link>
               <p className="text-xs text-trdbackground">by</p>
               <div className="flex items-center justify-center  gap-4 group cursor-pointer">
                 <div className="flex  justify-center items-center text-white font-extrabold rounded-full bg-trdbackground w-7 h-7">
@@ -83,6 +102,9 @@ export default function Trending() {
                   </p>
                   <div className="border group-hover:w-full duration-300 ease-out group-hover:border-trdbackground/100 border-trdbackground/0 w-0 bottom-0 absolute"></div>
                 </div>
+                <p className="text-[10px] border rounded-full px-1 border-trdbackground">
+                  PRO
+                </p>
               </div>
             </div>
           </div>

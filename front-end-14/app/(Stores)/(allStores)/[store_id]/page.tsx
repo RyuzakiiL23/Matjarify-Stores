@@ -7,7 +7,6 @@ import SectionEnd from "./_components/Body/SectoinEnd/SectionEnd";
 import Banner from "./_components/Hero/Banner";
 
 export default function Home(params: any) {
-  console.log(params);
   return (
     <main className="w-full h-full relative bg-muted">
       {/* <HeadersCollections /> */}
