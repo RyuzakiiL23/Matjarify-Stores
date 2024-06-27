@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Lato } from "next/font/google";
 import NavBar from "@/components/NavBar/NavBar";
 import Footer from "@/components/Footers/Footers";
-import "../globals.css";
+import "./globals.css";
 
 const lato = Lato({
   weight: ["400", "700", "100", "300", "900"],
