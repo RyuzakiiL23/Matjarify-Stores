@@ -38,6 +38,7 @@ export default function NewSection() {
                 alt="img 1"
                 style={{ objectFit: "cover" }}
                 className="rounded-lg w-full h-full"
+                sizes="(max-width: 1024px) 65vw, 32vw"
               />
             </div>
             <div className="p-2 flex justify-start  gap-4 items-center  text-primary ">

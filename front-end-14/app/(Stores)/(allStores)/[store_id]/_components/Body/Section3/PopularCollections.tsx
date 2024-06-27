@@ -51,9 +51,10 @@ export default function PopularCollections() {
               <Image
                 src={collection.image}
                 alt={collection.name}
-                width="500"
-                height={200}
-                style={{ height: "auto" }}
+                  width="0"
+                  height="0"
+                  sizes="100vw"
+                  style={{ width: "100%", height: "auto" }}
                 className="absolute group-hover:p-2 transition-all duration-500 ease-out"
               />
             </div>

@@ -27,6 +27,7 @@ export default function Collaborations() {
                 fill={true}
                 style={{objectFit: "contain"}}
                 className="p-4"
+                sizes="(max-width: 768px) 100vw, 48vw"
               />
             </div>
             <div className="flex text-primary group-hover:text-cyan-400 items-center gap-2 mt-2 justify-center transition-all duration-300 ease-out relative">

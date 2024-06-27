@@ -1,13 +1,12 @@
-'use client';
+"use client";
 
 import Image from "next/image";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import React from "react";
 
-
 export default function BestProducts() {
-  const params = useParams<{ store_id: string }>()
+  const params = useParams<{ store_id: string }>();
   const products = [
     {
       name: "category 1",
@@ -51,9 +50,10 @@ export default function BestProducts() {
             <Image
               src={product.image}
               alt={product.name}
-              width="240"
-              height={68}
-              style={{ height: "auto" }}
+              width="0"
+              height="0"
+              sizes="100vw"
+              style={{ width: "60%", height: "auto" }}
               className="absolute bottom-[-40px] right-[-20px] group-hover:bottom-[-20px] transition-all duration-500 ease-out"
             />
           </div>

@@ -48,6 +48,7 @@ export default function Templates() {
                 alt="img 1"
                 style={{ objectFit: "cover" }}
                 className=" w-full h-full border rounded-lg shadow-md"
+                sizes="(max-width: 640px) 65vw, (max-width: 1024px) 32vw, (max-width: 1536px) 23vw, 16vw"
               />
             </div>
             <div className="flex pl-2 gap-4 items-center mt-4">

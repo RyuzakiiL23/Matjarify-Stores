@@ -32,6 +32,7 @@ export default function Subscriptions() {
               alt="img 1"
               style={{ objectFit: "cover" }}
               className="rounded-lg w-full h-full"
+              sizes="(max-width: 1024px) 32vw, 320px"
             />
             <div className="absolute justify-between w-full h-full text-secbackground p-4 sm:p-6 md:p-8 xl:p-10">
               <div className="flex flex-col justify-between h-full">

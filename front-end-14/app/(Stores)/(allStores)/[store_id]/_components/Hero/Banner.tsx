@@ -9,6 +9,7 @@ export default function Banner() {
         alt="image"
         fill={true}
         className="absolute z-1"
+        priority={true}
       />
     </div>
   );

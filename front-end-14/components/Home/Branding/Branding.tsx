@@ -42,6 +42,7 @@ export default function Branding() {
                 alt="img 1"
                 style={{ objectFit: "cover" }}
                 className="rounded-lg w-full h-full"
+                sizes="(max-width: 1024px) 86vw, 43vw"
               />
             </div>
           </div>

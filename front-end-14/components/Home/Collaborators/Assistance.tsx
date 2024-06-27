@@ -36,7 +36,7 @@ export default function Assistance() {
           Ask for Assistance.
         </h1>
       </div>
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+      <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {data.slice(0, screenWidth.width < 1025 ? 2 : screenWidth.width < 1280 ? 3 : 4 ).map((item, index) => (
           <div key={index} className="relative h-fit w-full mt-10 px-4">
             <div className="relative block md:h-[32vw] lg:h-[23vw] xl:h-[16vw] h-[65vw] w-full rounded-lg ">
@@ -48,6 +48,7 @@ export default function Assistance() {
                 alt="img 1"
                 style={{ objectFit: "cover" }}
                 className="rounded-lg w-full h-full"
+                sizes="(max-width: 640px) 65vw, (max-width: 1024px) 32vw, (max-width: 1536px) 23vw, 16vw"
               />
             </div>
             <div className="flex gap-4 items-center mt-4">

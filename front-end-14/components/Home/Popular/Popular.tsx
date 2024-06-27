@@ -62,6 +62,7 @@ export default function Popular() {
                 alt="img 1"
                 style={{ objectFit: "cover" }}
                 className="rounded-lg w-full h-full"
+                sizes="(max-width: 640px) 65vw, (max-width: 1024px) 32vw, (max-width: 1536px) 23vw, 16vw"
               />
               <div className="absolute h-full w-full opacity-0 hover:opacity-100 bg-gradient-to-t from-black/50 transition-all duration-300 ease-in-out to-primary/0  ">
                 <div className="flex h-full w-full justify-center items-center">

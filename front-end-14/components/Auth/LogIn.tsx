@@ -32,20 +32,19 @@ export default function LogIn() {
   const handleChildClick = (event: React.MouseEvent<HTMLDivElement>) => {
     event.stopPropagation();
   };
+
   return (
     <div className="">
       <div
-        className={` top-0 right-0 left-0 bg-primary/90 h-screen shadow-lg px-4 py-2 sm:p-8 p-2 ${
+        className={`top-0 right-0 left-0 bg-primary/90 h-screen shadow-lg px-4 py-2 sm:p-8 p-2 ${
           logInState ? "absolute" : "hidden"
         }`}
-        // onClick={() => dispatch(SignUpClose())}
       >
         <div
           onClick={handleChildClick}
-          className={` h-full w-full overflow-hidden rounded-lg flex  relative`}
+          className={`h-full w-full overflow-hidden rounded-lg flex relative`}
         >
           {/* LogIn Tab */}
-
           <div
             className={`w-full p-10 bg-background justify-between h-full flex flex-col lg:w-1/2 ${
               logInState === "SignUp" ? "hidden" : ""
@@ -53,7 +52,7 @@ export default function LogIn() {
           >
             <div>
               <div className="flex w-full justify-between mb-10">
-                <p className="text-primary font-bold text-xl ">Log In</p>
+                <p className="text-primary font-bold text-xl">Log In</p>
                 <div
                   className="lg:hidden rounded-lg cursor-pointer p-1 bg-red-300 hover:bg-red-400/70 duration-150 ease-out text-trdbackground text-xl"
                   onClick={() => dispatch(SignUpClose())}
@@ -91,7 +90,7 @@ export default function LogIn() {
                   </label>
                 </div>
                 <div className="relative group cursor-pointer">
-                  <p className="md:flex font-bold text-primary border-b-2 border-border ">
+                  <p className="md:flex font-bold text-primary border-b-2 border-border">
                     Forget Password?
                   </p>
                   <div className="border group-hover:w-full duration-300 ease-out group-hover:border-trdbackground/100 border-trdbackground/0 w-0 bottom-0 absolute"></div>
@@ -99,12 +98,12 @@ export default function LogIn() {
               </div>
             </div>
             <div className="flex flex-col gap-4">
-              <p className="w-full text-center ">Or sign in with</p>
+              <p className="w-full text-center">Or sign in with</p>
               <div className="flex gap-3">
-                <button className=" h-14 bg-background w-full rounded-lg border-border border ">
+                <button className="h-14 bg-background w-full rounded-lg border-border border">
                   Google
                 </button>
-                <button className="h-14 bg-background w-full rounded-lg border-border border ">
+                <button className="h-14 bg-background w-full rounded-lg border-border border">
                   Facebook
                 </button>
               </div>
@@ -121,16 +120,15 @@ export default function LogIn() {
                 }
                 className="relative group cursor-pointer h-fit"
               >
-                <p className="md:flex font-bold text-primary border-b-2 border-border ">
+                <p className="md:flex font-bold text-primary border-b-2 border-border">
                   {logInState === "SignUp" ? "Log in" : "Sign Up"}
                 </p>
-                <span className=" border-t group-hover:w-full duration-300 ease-out group-hover:border-trdbackground/100 border-trdbackground/0 w-[0px] top-6 absolute" />
+                <span className="border-t group-hover:w-full duration-300 ease-out group-hover:border-trdbackground/100 border-trdbackground/0 w-[0px] top-6 absolute" />
               </div>
             </div>
           </div>
 
           {/* SignUp Tab */}
-
           <div
             className={`w-full p-10 bg-background justify-between h-full flex flex-col lg:w-1/2 absolute right-0 ${
               logInState === "LogIn" ? "hidden" : "translate-x-0"
@@ -138,7 +136,7 @@ export default function LogIn() {
           >
             <div>
               <div className="flex w-full justify-between mb-10">
-                <p className="text-primary font-bold text-xl ">Sign Up</p>
+                <p className="text-primary font-bold text-xl">Sign Up</p>
                 <div
                   className="lg:hidden rounded-lg cursor-pointer p-1 bg-red-300 hover:bg-red-400/70 duration-150 ease-out text-trdbackground text-xl"
                   onClick={() => dispatch(SignUpClose())}
@@ -190,20 +188,17 @@ export default function LogIn() {
                   </label>
                 </div>
                 <div className="relative group cursor-pointer">
-                  {/* <p className="md:flex font-bold text-primary border-b-2 border-border ">
-                    Forget Password?
-                  </p> */}
                   <div className="border group-hover:w-full duration-300 ease-out group-hover:border-trdbackground/100 border-trdbackground/0 w-0 bottom-0 absolute"></div>
                 </div>
               </div>
             </div>
             <div className="flex flex-col gap-4">
-              <p className="w-full text-center ">Or sign in with</p>
+              <p className="w-full text-center">Or sign in with</p>
               <div className="flex gap-3">
-                <button className=" h-14 bg-background w-full rounded-lg border-border border ">
+                <button className="h-14 bg-background w-full rounded-lg border-border border">
                   Google
                 </button>
-                <button className="h-14 bg-background w-full rounded-lg border-border border ">
+                <button className="h-14 bg-background w-full rounded-lg border-border border">
                   Facebook
                 </button>
               </div>
@@ -220,16 +215,18 @@ export default function LogIn() {
                 }
                 className="relative group cursor-pointer h-fit"
               >
-                <p className="md:flex font-bold text-primary border-b-2 border-border ">
+                <p className="md:flex font-bold text-primary border-b-2 border-border">
                   {logInState === "SignUp" ? "Log in" : "Sign Up"}
                 </p>
-                <span className=" border-t group-hover:w-full duration-300 ease-out group-hover:border-trdbackground/100 border-trdbackground/0 w-[0px] top-6 absolute" />
+                <span className="border-t group-hover:w-full duration-300 ease-out group-hover:border-trdbackground/100 border-trdbackground/0 w-[0px] top-6 absolute" />
               </div>
             </div>
           </div>
+
+          {/* Welcome Section */}
           <div
             className={`hidden absolute ${
-              logInState === "LogIn" ? " translate-x-full" : "  translate-x-0"
+              logInState === "LogIn" ? "translate-x-full" : "translate-x-0"
             } lg:flex w-1/2 bg-secondary h-full transition-all duration-300 ease-in`}
           >
             <div className="flex flex-col justify-between w-full p-10">
@@ -247,7 +244,13 @@ export default function LogIn() {
                   Matjarify Stores
                 </h1>
                 <div className="h-20 w-20 relative">
-                  <Image src={"/MatjarifyStoresLogo.png"} alt="Matjary" fill />
+                  <Image
+                    src="/MatjarifyStoresLogo.png"
+                    alt="Matjary"
+                    fill
+                    sizes="(max-width: 768px) 100vw, 20vw"
+                    className="object-contain"
+                  />
                 </div>
               </div>
               <div className="flex gap-2">
@@ -264,10 +267,10 @@ export default function LogIn() {
                   }
                   className="relative group cursor-pointer h-fit"
                 >
-                  <p className="md:flex font-bold text-primary border-b-2 border-border ">
+                  <p className="md:flex font-bold text-primary border-b-2 border-border">
                     {logInState === "SignUp" ? "Log in" : "Sign Up"}
                   </p>
-                  <span className=" border-t group-hover:w-full duration-300 ease-out group-hover:border-trdbackground/100 border-trdbackground/0 w-[0px] top-6 absolute" />
+                  <span className="border-t group-hover:w-full duration-300 ease-out group-hover:border-trdbackground/100 border-trdbackground/0 w-[0px] top-6 absolute" />
                 </div>
               </div>
             </div>

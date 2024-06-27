@@ -74,9 +74,9 @@ function CartSheet() {
             My Cart <FaCartShopping className="ml-2 my-4" />
           </div>
           <ScrollArea className="flex flex-col h-full relative">
-            {articles.map((article) => (
+            {articles.map((article, index) => (
               <Link
-                key={article.id}
+                key={index}
                 onClick={() => setSheetOpen(false)}
                 className="relative w-full cursor-pointer"
                 href={`/${params.store_id}/products/${article.name}`}

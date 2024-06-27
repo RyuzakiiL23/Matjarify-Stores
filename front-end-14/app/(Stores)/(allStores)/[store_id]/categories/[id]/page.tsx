@@ -28,9 +28,9 @@ export default function Page() {
         </h2>
       </div>
       <div className="flex gap-2 flex-wrap">
-        {products.map((product) => (
-          <Link href={`/${params.store_id}/products/6`}
-            key={product.name}
+        {products.map((product, index) => (
+          <Link  href={`/${params.store_id}/products/6`}
+            key={index}
             className=" my-8 h-full p-2 relative bg-card border overflow-hidden group cursor-default"
           >
             <div className="relative group h-60">

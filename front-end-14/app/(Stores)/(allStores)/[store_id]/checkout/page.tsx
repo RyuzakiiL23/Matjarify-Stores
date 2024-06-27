@@ -1,20 +1,24 @@
-'use client'
+"use client";
 
-import React, { ChangeEvent, useContext, useEffect, useState } from 'react';
+import React, { ChangeEvent, useContext, useEffect, useState } from "react";
 // import Cookies from 'universal-cookie';
 import {
   Sheet,
   SheetClose,
   SheetContent,
   SheetTrigger,
-} from '@/components/ui/sheet';
-import { FaCartShopping, FaMoneyCheckDollar, FaRegTrashCan } from 'react-icons/fa6';
-import Link from 'next/link';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
+} from "@/components/ui/sheet";
+import {
+  FaCartShopping,
+  FaMoneyCheckDollar,
+  FaRegTrashCan,
+} from "react-icons/fa6";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 // import { Context } from '@/app/layout';
 import Image from "next/image";
-import { useParams } from 'next/navigation';
+import { useParams } from "next/navigation";
 
 interface Article {
   name: string;
@@ -36,69 +40,69 @@ interface CltDetails {
 }
 
 export default function Checkout() {
-  const params = useParams<{store_id: 'string'}>()
+  const params = useParams<{ store_id: "string" }>();
   const [cltDetails, setCltDetails] = useState<CltDetails>({
-    Prénom: '',
-    Nom: '',
-    Adresse: '',
-    Code_postal: '',
-    Ville: '',
-    Téléphone: '',
+    Prénom: "",
+    Nom: "",
+    Adresse: "",
+    Code_postal: "",
+    Ville: "",
+    Téléphone: "",
   });
 
   const [sheetOpen, setSheetOpen] = useState(false);
 
-//   const { articleCookie, setArticleCookie } = useContext(Context) || {
-//     artileCookie: [],
-//     setArticleCookie: () => { },
-//   };
-//   const cookies = new Cookies();
+  //   const { articleCookie, setArticleCookie } = useContext(Context) || {
+  //     artileCookie: [],
+  //     setArticleCookie: () => { },
+  //   };
+  //   const cookies = new Cookies();
 
-//   useEffect(() => {
-//     fetch('http://localhost:8080/articles')
-//       .then((response) => response.json())
-//       .then((data: Article[]) => {
-//         const filteredArticles = data.filter((article) => articleCookie?.[article.id]);
-//         const filteredArticlesArray = Object.values(filteredArticles);
-//         setArticles(filteredArticlesArray);
-//       })
-//       .catch((error) => {
-//         console.error('Error fetching articles:', error);
-//       });
-//   }, [count, articleCookie]);
+  //   useEffect(() => {
+  //     fetch('http://localhost:8080/articles')
+  //       .then((response) => response.json())
+  //       .then((data: Article[]) => {
+  //         const filteredArticles = data.filter((article) => articleCookie?.[article.id]);
+  //         const filteredArticlesArray = Object.values(filteredArticles);
+  //         setArticles(filteredArticlesArray);
+  //       })
+  //       .catch((error) => {
+  //         console.error('Error fetching articles:', error);
+  //       });
+  //   }, [count, articleCookie]);
 
-//   const handleQuantityChange = (event: ChangeEvent<HTMLInputElement>, id: number) => {
-//     const item = { [id]: event.target.value.toString() };
-//     if (!articleCookie?.[id] || Object.values(item) !== item) {
-//       setArticleCookie((prevObject) => {
-//         const newArticleCookie = { ...prevObject, [id]: item };
-//         return newArticleCookie;
-//       });
+  //   const handleQuantityChange = (event: ChangeEvent<HTMLInputElement>, id: number) => {
+  //     const item = { [id]: event.target.value.toString() };
+  //     if (!articleCookie?.[id] || Object.values(item) !== item) {
+  //       setArticleCookie((prevObject) => {
+  //         const newArticleCookie = { ...prevObject, [id]: item };
+  //         return newArticleCookie;
+  //       });
 
-//       cookies.set(id.toString(), item, {
-//         // Add any additional cookie settings if needed
-//       });
-//     } else {
-//       console.log('id already exists in cart and cookies');
-//     }
-//   };
+  //       cookies.set(id.toString(), item, {
+  //         // Add any additional cookie settings if needed
+  //       });
+  //     } else {
+  //       console.log('id already exists in cart and cookies');
+  //     }
+  //   };
 
-//   useEffect(() => {
-//     const articleCookieValues = Object.values(articleCookie ?? {});
-//     setCount(articleCookieValues.length);
-//   }, [articleCookie]);
+  //   useEffect(() => {
+  //     const articleCookieValues = Object.values(articleCookie ?? {});
+  //     setCount(articleCookieValues.length);
+  //   }, [articleCookie]);
 
-//   const handleRemoveCookie = (val: string) => {
-//     cookies.remove(val);
+  //   const handleRemoveCookie = (val: string) => {
+  //     cookies.remove(val);
 
-//     setArticleCookie((prevObject) => {
-//       const newArticleCookie = { ...prevObject };
-//       delete newArticleCookie[val];
-//       return newArticleCookie;
-//     });
+  //     setArticleCookie((prevObject) => {
+  //       const newArticleCookie = { ...prevObject };
+  //       delete newArticleCookie[val];
+  //       return newArticleCookie;
+  //     });
 
-//     setArticles((prevArticles) => prevArticles.filter((article) => article.id.toString() !== val));
-//   };
+  //     setArticles((prevArticles) => prevArticles.filter((article) => article.id.toString() !== val));
+  //   };
 
   const articles = [
     {
@@ -126,7 +130,6 @@ export default function Checkout() {
       return acc + article.price;
     }, 0);
   };
-
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -193,10 +196,10 @@ export default function Checkout() {
             className="border p-2 w-full"
           />
         </div>
-        <div className='flex w-full justify-between px-20'>
-            <span className="p-4">Total</span>
-            <span className="p-4 text-primary ">{getTotalPrice()} Dh</span>
-          </div>
+        <div className="flex w-full justify-between px-20">
+          <span className="p-4">Total</span>
+          <span className="p-4 text-primary ">{getTotalPrice()} Dh</span>
+        </div>
       </div>
       <div className="w-[40%] mr-10">
         <div className="flex border-b relative">
@@ -204,10 +207,10 @@ export default function Checkout() {
           <p className="ml-4 w-[18%]">Quanité</p>
           <p className="ml-4 w-[18%]">Total</p>
         </div>
-        {articles.map((article) => (
+        {articles.map((article, index) => (
           <div
             className="bg-background flex border-b px-4 relative"
-            key={article.id}
+            key={index}
           >
             <div className="flex w-[70%] ">
               <div className="w-[30%] h-[150px] flex items-center justify-center cursor-default relative">
@@ -219,8 +222,10 @@ export default function Checkout() {
                   <Image
                     src={article.image1}
                     alt={`Image for ${article.brand}`}
-                    layout="fill"
-                    objectFit="cover"
+                    fill
+                    priority={true}
+                    style={{ objectFit: "cover" }}
+                    sizes="200px"
                     className="rounded"
                   />
                 </Link>

@@ -48,6 +48,7 @@ export default function Blog() {
                 alt="img 1"
                 style={{ objectFit: "cover" }}
                 className="rounded-lg w-full h-full"
+                sizes="(max-width: 768px) 65vw, (max-width: 1024px) 32vw, (max-width: 1280px) 23vw, 16vw"
               />
             </div>
             <div className="flex pl-2 gap-4 items-center mt-4">
