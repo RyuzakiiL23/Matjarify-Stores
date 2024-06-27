@@ -1,6 +1,6 @@
+// Initiate the server and connect to the database
 const express = require('express');
-const { sequelize, User, Store, Category } = require('./models');
-
+const { sequelize } = require('./models/index.cjs');
 
 const app = express();
 app.use(express.json());
@@ -57,4 +57,3 @@ sequelize.sync({ alter: true }).then(() => {
 });
 
 module.exports = app;
-

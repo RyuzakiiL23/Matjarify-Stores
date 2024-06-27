@@ -5,6 +5,7 @@ while true; do
     echo "Do you want to start the server in development or production mode?"
     echo "1) for development Mode"
     echo "2) for production Mode"
+    echo "3) test the server"
     read status
     if [ -f .env ]; then
         if [ $status -eq 1 ]; then
@@ -12,6 +13,9 @@ while true; do
             exit 0
         elif [ $status -eq 2 ]; then
             npm run start
+            exit 0
+        elif [ $status -eq 3 ]; then
+            npm run test
             exit 0
         else
             echo "Invalid input"
@@ -29,6 +33,7 @@ while true; do
         sudo mysql -e "CREATE USER 'matjry'@'localhost' IDENTIFIED BY '$password';"
         sudo mysql -e "GRANT ALL PRIVILEGES ON matjry.* TO 'matjry'@'localhost';"
         sudo mysql -e "FLUSH PRIVILEGES;"
+        SECRET_KEY=$(openssl rand -base64 32)
 
         # Create .env file with MySQL password
         echo "USER_NAME=matjry" > .env
@@ -36,12 +41,15 @@ while true; do
         echo "DATABASE_NAME=matjry" >> .env
         echo "DATABASE_HOST=localhost" >> .env
         echo "DATABASE_PORT=3306" >> .env
+        echo "SECRET_KEY=$SECRET_KEY" >> .env
 
         # Start the server based on user input
         if [ $status -eq 1 ]; then
             npm run start:dev
         elif [ $status -eq 2 ]; then
             npm run start
+        elif [ $status -eq 3 ]; then
+            npm run test
         else
             echo "Invalid input"
             exit -1

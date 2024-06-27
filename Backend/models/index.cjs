@@ -1,14 +1,14 @@
-const sequelize = require('../config/database');
-const Store = require('./Store');
-const Subscription = require('./Subscription');
-const User = require('./User');
-const Order = require('./Order');
-const Category = require('./Category');
-const Subcategory = require('./Subcategory');
-const Address = require('./Address');
-const Image = require('./Image');
-const Orderdetail = require('./Orderdetail');
-const Product = require('./Product');
+const sequelize = require('../config/database.cjs');
+const Store = require('./Store.cjs');
+const Subscription = require('./Subscription.cjs');
+const User = require('./User.cjs');
+const Order = require('./Order.cjs');
+const Category = require('./Category.cjs');
+const Subcategory = require('./Subcategory.cjs');
+const Address = require('./Address.cjs');
+const Image = require('./Image.cjs');
+const Orderdetail = require('./Orderdetail.cjs');
+const Product = require('./Product.cjs');
 
 Subscription.belongsTo(Store, {foreignKey: 'store_id', as:'store'})
 
