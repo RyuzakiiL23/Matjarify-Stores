@@ -2,7 +2,7 @@ const { DataTypes } = require('sequelize');
 const sequelize = require('../config/database');
 
 const Subcategory = sequelize.define('Subcategory', {
-    title: {
+    name: {
         type: DataTypes.STRING(128)
     },
     description: {
@@ -16,7 +16,15 @@ const Subcategory = sequelize.define('Subcategory', {
         allowNull: false,
     }
 }, {
-    tableName: 'subcategories'
+    tableName: 'subcategories',
+    indexes: [
+        {
+            fields: ['name']
+        },
+        {
+            fields: ['store_id']
+        }
+    ]
 });
 
 module.exports = Subcategory;

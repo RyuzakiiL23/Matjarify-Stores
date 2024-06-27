@@ -14,7 +14,15 @@ const Product = sequelize.define('Product', {
         allowNull: false,
     },
 },{
-    tableName: 'products'
+    tableName: 'products',
+    indexes: [
+        {
+            fields: ['title']
+        },
+        {
+            fields: ['sub_category_id']
+        }
+    ]
 });
 
 

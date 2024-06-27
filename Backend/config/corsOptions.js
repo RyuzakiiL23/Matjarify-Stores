@@ -1,6 +1,6 @@
 const allowedOrigins = require('./allowedOrigins');
 
-const corsOprions = {
+const corsOptions = {
     origin: (origin, callback) => {
         if (allowedOrigins.indexOf(origin) !== -1 || !origin){ // delete it in production
             callback(null, true);
@@ -8,8 +8,8 @@ const corsOprions = {
             callback(new Error('Not allowed By Cors'));
         }
     },
-    credential: true,
+    credentials: true,
     optionSuccessStatus: 200
 };
 
-module.exports = corsOprions;
+module.exports = corsOptions;

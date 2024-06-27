@@ -10,7 +10,12 @@ const Image = sequelize.define('Image', {
         allowNull: false,
     }
 }, {
-    tableName: 'images'
+    tableName: 'images',
+    indexes: [
+        {
+            fields: ['name']
+        }
+    ]
 });
 
 

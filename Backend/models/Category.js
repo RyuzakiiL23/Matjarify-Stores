@@ -2,7 +2,7 @@ const { DataTypes } = require('sequelize');
 const sequelize = require('../config/database');
 
 const Category = sequelize.define('Category', {
-    title: {
+    name: {
         type: DataTypes.STRING(128)
     },
     description: {
@@ -12,7 +12,13 @@ const Category = sequelize.define('Category', {
         type:  DataTypes.STRING(128)
     }
 }, {
-    tableName: 'categories'
+    tableName: 'categories',
+    indexes: [
+        {
+            unique: true,
+            fields: ['name']
+        }
+    ]
 });
 
 

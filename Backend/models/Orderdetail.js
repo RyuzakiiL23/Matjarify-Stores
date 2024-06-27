@@ -11,7 +11,15 @@ const Orderdetail = sequelize.define('Orderdetail', {
         allowNull: false,
     }
 }, {
-    tableName: 'orderdetails'
+    tableName: 'orderdetails',
+    indexes: [
+        {
+            fields: ['order_id']
+        },
+        {
+            fields: ['product_id']
+        }
+    ]
 });
 
 module.exports = Orderdetail;

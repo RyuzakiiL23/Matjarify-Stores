@@ -25,7 +25,15 @@ const Address = sequelize.define('Address', {
         allowNull: false,
     }
 }, {
-    tableName: 'addresses'
+    tableName: 'addresses',
+    indexes: [
+        {
+            fields: ['user_id']
+        },
+        {
+            fields: ['city']
+        }
+    ]
 });
 
 module.exports = Address;
