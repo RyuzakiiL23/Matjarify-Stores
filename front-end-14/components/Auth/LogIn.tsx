@@ -21,53 +21,52 @@ export default function LogIn() {
     const email = formData.get("email");
     const password = formData.get("password");
     try {
-        const response = await fetch(`http://localhost:8000/auth/login`, {
-            method: "POST",
-            credentials: "include", // Include cookies in the request
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ email, password }),
-        });
-
-        const res = await response.json();
-        if (response.ok) {
-            console.log(res);
-            // Store user info in local storage or state management
-            localStorage.setItem('user', JSON.stringify(res));
-            dispatch(AuthenticatedState());
-            dispatch(SignUpClose());
-        }
+      const response = await fetch(`${process.env.BACKEND_URL}/auth/login`, {
+        method: "POST",
+        credentials: "include", // Include cookies in the request
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      });
+      const res = await response.json();
+      if (response.ok) {
+        console.log(res);
+        // Store user info in local storage or state management
+        localStorage.setItem("user", JSON.stringify(res));
+        dispatch(AuthenticatedState());
+        dispatch(SignUpClose());
+      }
     } catch (error) {
-        console.log(error);
+      console.log(error);
     }
-};
+  };
 
-const signUp = async (formData: FormData) => {
+  const signUp = async (formData: FormData) => {
     const fullName = formData.get("fullName");
     const email = formData.get("email");
     const password = formData.get("password");
     const confirmPassword = formData.get("confirmPass");
     try {
-        const response = await fetch(`http://localhost:8000/auth/register`, {
-            method: "POST",
-            credentials: "include", // Include cookies in the request
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ fullName, email, password, confirmPassword}),
-        });
+      const response = await fetch(`${process.env.BACKEND_URL}/auth/register`, {
+        method: "POST",
+        credentials: "include", // Include cookies in the request
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ fullName, email, password, confirmPassword }),
+      });
 
-        if (response.ok) {
-            // Store user info in local storage or state management
-            localStorage.setItem('user', JSON.stringify(response));
-            dispatch(AuthenticatedState());
-            dispatch(SignUpClose());
-        }
+      if (response.ok) {
+        // Store user info in local storage or state management
+        localStorage.setItem("user", JSON.stringify(response));
+        dispatch(AuthenticatedState());
+        dispatch(SignUpClose());
+      }
     } catch (error) {
-        console.log(error);
+      console.log(error);
     }
-}
+  };
 
   useEffect(() => {
     if (logInState === "LogIn" || logInState === "SignUp") {
@@ -205,37 +204,37 @@ const signUp = async (formData: FormData) => {
               {/* SignUp Form */}
 
               <form action={signUp}>
-              <label htmlFor="fullName">Full Name</label>
-              <input
-                type="text"
-                placeholder="Full Name"
-                name="fullName"
-                className="w-full h-10 bg-input p-2 rounded-lg mb-2"
-              />
-              <label htmlFor="email">Email</label>
-              <input
-                type="email"
-                placeholder="Email"
-                name="email"
-                className="w-full h-10 bg-input p-2 rounded-lg mb-2"
-              />
-              <label htmlFor="password">Password</label>
-              <input
-                type="password"
-                name="password"
-                placeholder="Password"
-                className="w-full h-10 bg-input p-2 rounded-lg mb-2"
-              />
-              <label htmlFor="confirmPass">Confirm Password</label>
-              <input
-                type="password"
-                name="confirmPass"
-                placeholder="Confirm Password"
-                className="w-full h-10 bg-input p-2 rounded-lg mb-2"
-              />
-              <button className="w-full h-14 bg-primary text-secondary rounded-lg">
-                Log In
-              </button>
+                <label htmlFor="fullName">Full Name</label>
+                <input
+                  type="text"
+                  placeholder="Full Name"
+                  name="fullName"
+                  className="w-full h-10 bg-input p-2 rounded-lg mb-2"
+                />
+                <label htmlFor="email">Email</label>
+                <input
+                  type="email"
+                  placeholder="Email"
+                  name="email"
+                  className="w-full h-10 bg-input p-2 rounded-lg mb-2"
+                />
+                <label htmlFor="password">Password</label>
+                <input
+                  type="password"
+                  name="password"
+                  placeholder="Password"
+                  className="w-full h-10 bg-input p-2 rounded-lg mb-2"
+                />
+                <label htmlFor="confirmPass">Confirm Password</label>
+                <input
+                  type="password"
+                  name="confirmPass"
+                  placeholder="Confirm Password"
+                  className="w-full h-10 bg-input p-2 rounded-lg mb-2"
+                />
+                <button className="w-full h-14 bg-primary text-secondary rounded-lg">
+                  Log In
+                </button>
               </form>
               <div className="flex justify-between mt-4">
                 <div className="flex gap-2 cursor-pointer">

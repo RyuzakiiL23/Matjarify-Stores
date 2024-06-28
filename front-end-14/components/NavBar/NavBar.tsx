@@ -18,10 +18,7 @@ export default function NavBar() {
   );
   const cookies = new Cookies(null, { path: "/" });
   const dispatch = useDispatch();
-  const [user, setUser] = useState(() => {
-    const storedUser = localStorage.getItem("user");
-    return storedUser ? JSON.parse(storedUser) : null;
-  });
+  const [user, setUser] = useState<any>('wait');
 
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
@@ -29,7 +26,7 @@ export default function NavBar() {
   }, [authState]);
 
   const logOut = async () => {
-    const res = await fetch("http://localhost:8000/auth/logout", {
+    const res = await fetch(`${process.env.BACKEND_URL}/auth/logout`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -108,7 +105,7 @@ export default function NavBar() {
               </p>
             </div>
           </div>
-        ) : (
+        ) : user === 'wait' ? (null) : (
           <div className="cursor-pointer" onClick={logOut}>
           <div className="flex relative hover:bg-secbackground hover:border border-primary duration-300 ease-in-out justify-center items-center overflow-hidden bg-primary text-secondary h-10 w-10 rounded-full group">
               <span className="p-0 m-0 group-hover:hidden text-4xl pb-2 font-bold ">{user.name.slice(0, 1)}</span>

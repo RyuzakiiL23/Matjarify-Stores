@@ -4,7 +4,7 @@ import React from 'react'
 export default function LogOut() {
     const logOut = async () => {
         try {
-          const response = await fetch(`http://localhost:8000/auth/logout`, {
+          const response = await fetch(`${process.env.BACKEND_URL}/logout`, {
             method: "GET",
             credentials: "include",
             headers: {
