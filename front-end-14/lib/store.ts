@@ -1,10 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit'
 import LogInDialogSlice from './features/LogInDialogSlice'
+import AuthSlice from './features/AuthSlice'
 
 export const makeStore = () => {
   return configureStore({
     reducer: {
       logInDialog: LogInDialogSlice,
+      AuthSlice,
     },
   })
 }
