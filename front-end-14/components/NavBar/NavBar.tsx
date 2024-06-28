@@ -26,7 +26,7 @@ export default function NavBar() {
   }, [authState]);
 
   const logOut = async () => {
-    const res = await fetch(`${process.env.BACKEND_URL}/auth/logout`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/logout`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
