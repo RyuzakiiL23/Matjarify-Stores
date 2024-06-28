@@ -17,7 +17,12 @@ const Subscription = sequelize.define('Subscription', {
     },
 
 }, {
-    tableName: 'subscriptions'
+    tableName: 'subscriptions',
+    indexes: [
+        {
+            fields: ['store_id']
+        }
+    ]
 });
 
 module.exports = Subscription;

@@ -35,7 +35,7 @@ const register = async (req, res) => {
                 lastName,
                 email,
                 password: hashPass,
-            });
+            }, { transaction });
 
             await transaction.commit();
 
@@ -49,7 +49,7 @@ const register = async (req, res) => {
 
         res.cookie('token', token, {
             httpOnly: true,
-            sameSite: 'None',
+            sameSite: 'None', // strict 
             // secure: true // only prod 'https'
             maxAge: 3600000 * 24 * 7 // 7days
         });

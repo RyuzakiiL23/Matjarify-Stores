@@ -11,7 +11,15 @@ const Order = sequelize.define('Order', {
         allowNull: false,
     }
 },{
-    tableName: 'orders'
+    tableName: 'orders',
+    indexes: [
+        {
+            fields: ['user_id']
+        },
+        {
+            fields: ['store_id']
+        }
+    ]
 });
 
 
