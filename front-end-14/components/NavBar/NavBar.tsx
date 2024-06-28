@@ -110,7 +110,7 @@ export default function NavBar() {
           </div>
         ) : (
           <div className="cursor-pointer" onClick={logOut}>
-          <div className="flex relative hover:bg-red-200 duration-300 ease-in-out justify-center items-center overflow-hidden bg-primary text-secondary h-10 w-10 rounded-full group">
+          <div className="flex relative hover:bg-secbackground hover:border border-primary duration-300 ease-in-out justify-center items-center overflow-hidden bg-primary text-secondary h-10 w-10 rounded-full group">
               <span className="p-0 m-0 group-hover:hidden text-4xl pb-2 font-bold ">{user.name.slice(0, 1)}</span>
               <span className="p-0 m-0 group-hover:flex hidden text-primary font-bold text-2xl"><TbLogout2 /></span>
             </div>
