@@ -18,6 +18,7 @@ if (migrate === 'migrate'){
 }
 
 app.use(cors(corsOptions));
+app.options('*', cors());
 app.use(parseCookie());
 app.use(express.json());
 
