@@ -21,7 +21,7 @@ export default function LogIn() {
     const email = formData.get("email");
     const password = formData.get("password");
     try {
-      const response = await fetch(`${process.env.BACKEND_URL}/auth/login`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/login`, {
         method: "POST",
         credentials: "include", // Include cookies in the request
         headers: {
@@ -48,7 +48,7 @@ export default function LogIn() {
     const password = formData.get("password");
     const confirmPassword = formData.get("confirmPass");
     try {
-      const response = await fetch(`${process.env.BACKEND_URL}/auth/register`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/register`, {
         method: "POST",
         credentials: "include", // Include cookies in the request
         headers: {
