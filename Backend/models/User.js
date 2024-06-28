@@ -28,6 +28,12 @@ const User = sequelize.define('User', {
     role: {
         type: DataTypes.STRING,
         defaultValue: "user"
+    },
+    google_id: {
+        type: DataTypes.STRING,
+    },
+    facebook_id: {
+        type: DataTypes.STRING,
     }
 },{
     tableName: 'users'
