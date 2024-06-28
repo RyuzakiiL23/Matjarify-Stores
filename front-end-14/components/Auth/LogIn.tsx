@@ -1,6 +1,6 @@
 "use client";
 import { RootState } from "@/lib/store";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   SignUpOpen,
@@ -15,6 +15,32 @@ export default function LogIn() {
   const logInState = useSelector(
     (state: RootState) => state.logInDialog.logInDialog
   );
+  const [response, setResponse] = useState(null);
+
+  const logIn = async (formData: FormData) => {
+    const email = formData.get("email");
+    const password = formData.get("password");
+    try {
+      const response = await fetch(`http://localhost:8000/auth/login`, {
+        method: "POST",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({'email': email, 'password': password}),
+      });
+      const res = await response.json();
+      setResponse(res);
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  useEffect(() => {
+    if (response) {
+      console.log(response);
+    }
+  }, [response]);
 
   useEffect(() => {
     if (logInState === "LogIn" || logInState === "SignUp") {
@@ -60,23 +86,28 @@ export default function LogIn() {
                   <FaXmark />
                 </div>
               </div>
-              <label htmlFor="email">Email</label>
-              <input
-                type="email"
-                placeholder="Email"
-                name="email"
-                className="w-full h-10 bg-input p-2 rounded-lg my-4"
-              />
-              <label htmlFor="password">Password</label>
-              <input
-                type="password"
-                name="password"
-                placeholder="Password"
-                className="w-full h-10 bg-input p-2 rounded-lg my-4"
-              />
-              <button className="w-full h-14 bg-primary text-secondary rounded-lg">
-                Log In
-              </button>
+
+              {/* Login Form */}
+
+              <form action={logIn}>
+                <label htmlFor="email">Email</label>
+                <input
+                  type="email"
+                  placeholder="Email"
+                  name="email"
+                  className="w-full h-10 bg-input p-2 rounded-lg my-4"
+                />
+                <label htmlFor="password">Password</label>
+                <input
+                  type="password"
+                  name="password"
+                  placeholder="Password"
+                  className="w-full h-10 bg-input p-2 rounded-lg my-4"
+                />
+                <button className="w-full h-14 bg-primary text-secondary rounded-lg">
+                  Log In
+                </button>
+              </form>
               <div className="flex justify-between mt-4">
                 <div className="flex gap-2 cursor-pointer">
                   <input
@@ -144,6 +175,7 @@ export default function LogIn() {
                   <FaXmark />
                 </div>
               </div>
+              {/* SignUp Form */}
               <label htmlFor="fullName">Full Name</label>
               <input
                 type="text"
