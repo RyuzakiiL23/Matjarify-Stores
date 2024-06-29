@@ -12,8 +12,10 @@ import { useEffect, useState } from "react";
 import { NotAuthenticatedState } from "@/lib/features/AuthSlice";
 import { TbLogout2 } from "react-icons/tb";
 import ProfileDialog from "./ProfileDialog";
+import { useRouter } from 'next/navigation'
 
 export default function NavBar() {
+  const router = useRouter();
   const [hover, setHover] = useState(false);
   const authState = useSelector(
     (state: RootState) => state.AuthSlice.authState
@@ -59,8 +61,10 @@ export default function NavBar() {
     );
     if (res.ok) {
       cookies.remove("token");
+      setOpen(false);
       dispatch(NotAuthenticatedState());
       localStorage.removeItem("user");
+      router.push('/')
       setUser(null);
     }
   };
