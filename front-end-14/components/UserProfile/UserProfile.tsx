@@ -1,5 +1,6 @@
 "use client";
 import { RootState } from "@/lib/store";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import { FaCartShopping, FaRegBookmark } from "react-icons/fa6";
 import { useSelector } from "react-redux";
@@ -31,14 +32,18 @@ export default function UserProfile() {
       </div>
       {/* Cart Favorite */}
       <div className="w-96 justify-around flex ">
-        <div className="text-3xl p-4 flex flex-col items-center"><FaCartShopping/>
-        <h1 className="text-xl">Cartes</h1>
-        </div>
-        <div className="text-3xl p-4 flex flex-col items-center"><FaRegBookmark/>
-        <h1 className="text-xl">Favoris</h1>
-        
-        </div>
-
+        <Link href="/Carts" className="cursor-pointer">
+          <div className="text-3xl p-4 flex flex-col items-center">
+            <FaCartShopping />
+            <h1 className="text-xl">Carts</h1>
+          </div>
+        </Link>
+        <Link href="/Favorites" className="cursor-pointer">
+          <div className="text-3xl p-4 flex flex-col items-center">
+            <FaRegBookmark />
+            <h1 className="text-xl">Favorites</h1>
+          </div>
+        </Link>
       </div>
     </div>
   );

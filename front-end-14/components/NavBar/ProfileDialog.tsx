@@ -20,10 +20,14 @@ export default function ProfileDialog(props: any) {
           </Link>
         </li>
         <li className="hover:bg-opacity-100 bg-trdbackground bg-opacity-0 duration-150">
+          <Link href={'/Favorites'}>
           <h1 className="text-background p-8 py-2">Favorites</h1>
+          </Link>
         </li>
         <li className="hover:bg-opacity-100 bg-trdbackground bg-opacity-0 duration-150">
-          <h1 className="text-background p-8 py-2">Cartes</h1>
+          <Link href={'/Carts'}>
+          <h1 className="text-background p-8 py-2">Carts</h1>
+          </Link>
         </li>
       </ul>
       <div className="  py-4 w-full ">
