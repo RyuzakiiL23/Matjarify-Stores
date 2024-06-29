@@ -8,7 +8,7 @@ const corsOprions = {
             callback(new Error('Not allowed By Cors'));
         }
     },
-    credential: true,
+    credentials: true,
     optionSuccessStatus: 200
 };
 

@@ -33,8 +33,10 @@ export default function Ahlame() {
 
   return (
     <div className="bg-gray-100 flex items-center justify-center h-screen">
+      <button className="bg-blue-500 text-white p-2 rounded hover:bg-blue-600 transition duration-200">Log in</button>
+      <button className="bg-red-500 text-white p-2 rounded hover:bg-red-600 transition duration-200">Sign up</button>
     
-    <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
+    <div className="hidden bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
         <h2 className="text-2xl font-bold mb-6">Log in</h2>
         <form action="#" method="POST">
             <div className="mb-4">

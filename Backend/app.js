@@ -16,7 +16,7 @@ if (migrate === 'migrate'){
      });
 }
 
-app.use(cors());
+app.use(cors(corsOprions));
 app.use(parseCookie());
 app.use(express.json());
 

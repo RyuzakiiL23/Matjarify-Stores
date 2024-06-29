@@ -15,6 +15,21 @@ export default function LogIn() {
   const logInState = useSelector(
     (state: RootState) => state.logInDialog.logInDialog
   );
+  const logIn = async () => {
+    const response = await fetch("http://localhost:8000/auth/login", {
+      method: "POST",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: "omar@gmail.com",
+        password: "test1234"
+      }),	
+      
+    });
+    console.log(response);
+  }
 
   useEffect(() => {
     if (logInState === "LogIn" || logInState === "SignUp") {
@@ -74,7 +89,7 @@ export default function LogIn() {
                 placeholder="Password"
                 className="w-full h-10 bg-input p-2 rounded-lg my-4"
               />
-              <button className="w-full h-14 bg-primary text-secondary rounded-lg">
+            <button onClick={logIn} className="w-full h-14 bg-primary text-secondary rounded-lg">
                 Log In
               </button>
               <div className="flex justify-between mt-4">
