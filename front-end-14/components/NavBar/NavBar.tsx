@@ -11,30 +11,58 @@ import { RootState } from "@/lib/store";
 import { useEffect, useState } from "react";
 import { NotAuthenticatedState } from "@/lib/features/AuthSlice";
 import { TbLogout2 } from "react-icons/tb";
+import ProfileDialog from "./ProfileDialog";
+import { useRouter } from 'next/navigation'
 
 export default function NavBar() {
+  const router = useRouter();
+  const [hover, setHover] = useState(false);
   const authState = useSelector(
     (state: RootState) => state.AuthSlice.authState
   );
   const cookies = new Cookies(null, { path: "/" });
   const dispatch = useDispatch();
-  const [user, setUser] = useState<any>('wait');
+  const [user, setUser] = useState<any>("wait");
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
     setUser(storedUser ? JSON.parse(storedUser) : null);
   }, [authState]);
 
+  //Hover effect
+
+  useEffect(() => {
+    if (!hover) {
+      const timeoutId = setTimeout(() => {
+        setOpen(false);
+      }, 500);
+      return () => {
+        clearTimeout(timeoutId);
+      };
+    } else {
+      setOpen(true);
+    }
+
+    // Cleanup function to clear the timeout if `hover` changes
+  }, [hover]);
+
   const logOut = async () => {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/logout`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      credentials: "include",
-    });
+    console.log("logout");
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/logout`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+      }
+    );
     if (res.ok) {
+      router.push('/')
       cookies.remove("token");
+      setOpen(false);
       dispatch(NotAuthenticatedState());
       localStorage.removeItem("user");
       setUser(null);
@@ -105,11 +133,25 @@ export default function NavBar() {
               </p>
             </div>
           </div>
-        ) : user === 'wait' ? (null) : (
-          <div className="cursor-pointer" onClick={logOut}>
-          <div className="flex relative hover:bg-secbackground hover:border border-primary duration-300 ease-in-out justify-center items-center overflow-hidden bg-primary text-secondary h-10 w-10 rounded-full group">
-              <span className="p-0 m-0 group-hover:hidden text-4xl pb-2 font-bold ">{user.name.slice(0, 1)}</span>
-              <span className="p-0 m-0 group-hover:flex hidden text-primary font-bold text-2xl"><TbLogout2 /></span>
+        ) : user === "wait" ? null : (
+          <div
+            className="cursor-pointer relative group"
+            onMouseEnter={() => setHover(true)}
+            onMouseLeave={() => setHover(false)}
+          >
+            <div className="flex relative hover:opacity-85 border-primary duration-300 ease-in-out justify-center items-center overflow-hidden bg-primary text-secondary h-10 w-10 rounded-full ">
+              <span className="p-0 m-0 text-4xl pb-2 font-bold ">
+                {user.name.slice(0, 1)}
+              </span>
+            </div>
+            <div className="absolute  top-12 left-[-180px]  lg:left-0">
+              <div
+                onMouseEnter={() => setHover(true)}
+                onMouseLeave={() => setHover(false)}
+                className={open ? `bg-primary ${hover ? 'bg-opacity-100' : 'bg-opacity-0' } duration-500 transition-all h-fit w-56 rounded-lg` : "hidden"}
+              >
+                <ProfileDialog logOut={logOut} hover={hover}/>
+              </div>
             </div>
           </div>
         )}
