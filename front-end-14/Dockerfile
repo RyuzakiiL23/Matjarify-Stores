@@ -1,0 +1,10 @@
+FROM node:20
+
+WORKDIR /app
+
+COPY . .
+
+RUN npm install
+RUN npm run build
+COPY package*.json ./
+CMD ["npm", "start"]

@@ -13,7 +13,7 @@ export default function UserProfile() {
 
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
-    setUser(storedUser ? JSON.parse(storedUser) : null);
+    setUser(storedUser ? JSON.parse(storedUser) : 'wait');
   }, [authState]);
 
   return (
@@ -27,7 +27,7 @@ export default function UserProfile() {
           </div>
         </div>
         <h1 className="w-full text-center my-4 text-2xl font-bold text-primary">
-          {user.name}
+          {user === "wait" ? "" : user.name}
         </h1>
       </div>
       {/* Cart Favorite */}

@@ -60,11 +60,11 @@ export default function NavBar() {
       }
     );
     if (res.ok) {
+      router.push('/')
       cookies.remove("token");
       setOpen(false);
       dispatch(NotAuthenticatedState());
       localStorage.removeItem("user");
-      router.push('/')
       setUser(null);
     }
   };
