@@ -58,7 +58,7 @@ const register = async (req, res) => {
 
     }catch (error){
         await transaction.rollback();
-        return res.status(400).json({message: "something went wrrong"});
+        return res.status(500).json({message: "something went wrrong"});
 
     }
 }
@@ -105,7 +105,7 @@ const login = async (req, res) => {
         return res.status(200).json({name: user.firstName ,token});
         
     }catch (error){
-        return res.status(400).json({message: "something went wrrong"});
+        return res.status(500).json({message: "something went wrrong"});
     }
 }
 
@@ -131,7 +131,7 @@ const googleAuth = (req, res) => {
     res.cookie('token', token, {
         httpOnly: true,
         sameSite: 'None', // strict 
-        // secure: true // only prod 'https'
+        secure: true, // only prod 'https'
         maxAge: 3600000 * 24 * 7 // 7days
     });
 
@@ -155,7 +155,7 @@ const facebookAuth = (req, res) => {
     res.cookie('token', token, {
         httpOnly: true,
         sameSite: 'None', // strict 
-        // secure: true // only prod 'https'
+        secure: true, // only prod 'https'
         maxAge: 3600000 * 24 * 7 // 7days
     });
 

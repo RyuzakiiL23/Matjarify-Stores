@@ -12,14 +12,13 @@ passport.use(new facebookStrategy({
 async (accessToken, refreshToken, profile, done) => {
     try{
         let user = await User.findOne({where : {facebook_id: profile.id}});
-        console.log(profile);
         if (!user){
             user = await User.create({
                 facebook_id: profile.id,
-                email: profile.emails[0].value,
-                firstName: profile.given_name,
-                lastName: profile.family_name,
-                password: await bcrypt.hash(profile.id + profile.email, 10),
+                email: `${profile.id}@gmail.com`,
+                firstName: profile.displayName.split(" ")[0],
+                lastName: profile.displayName.split(" ")[1],
+                password: await bcrypt.hash(profile.id + `${profile.id}@gmail.com`, 10),
             });
         }
         return done(null, user);
