@@ -2,11 +2,9 @@ const { DataTypes } = require('sequelize');
 const sequelize = require('../config/database');
 
 const Store = sequelize.define('Store', {
-    title: {
-        type: DataTypes.STRING(128)
-    },
     description: {
-        type: DataTypes.TEXT
+        type: DataTypes.TEXT,
+        allowNull: false,
     },
     image: {
         type:  DataTypes.STRING(128)
@@ -15,13 +13,20 @@ const Store = sequelize.define('Store', {
         type: DataTypes.INTEGER,
         allowNull: false,
     },
-    admin: DataTypes.INTEGER,
+    name: {
+        type: DataTypes.STRING(128),
+        allowNull: false,
+    },
+    admin: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+    },
 
 }, {
     tableName: 'stores',
     indexes: [
         {
-            fields: ['title']
+            fields: ['name']
         },
         {
             fields: ['category_id']
