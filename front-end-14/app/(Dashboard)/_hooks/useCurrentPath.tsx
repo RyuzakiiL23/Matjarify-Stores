@@ -6,6 +6,8 @@ export default function useCurrentPath() {
 
   if (currentPath === "/Dashboard") {
     return "Dashboard";
+  } else if (currentPath === "/Dashboard/Profile") {
+    return "Business Profile";
   }
 
   const parts = currentPath.split("/");

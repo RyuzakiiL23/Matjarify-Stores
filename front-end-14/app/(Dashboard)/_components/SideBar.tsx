@@ -1,6 +1,6 @@
 "use client";
 import { FiHome, FiUsers } from "react-icons/fi";
-import { MdPerson, MdStorefront } from "react-icons/md";
+import {  MdOutlineReceiptLong, MdStorefront } from "react-icons/md";
 import {
   CreditCard,
   Github,
@@ -10,18 +10,15 @@ import {
   User,
 } from "lucide-react";
 import Link from "next/link";
-import type { RootState } from "@/lib/store";
 
-import { use, useEffect, useState } from "react";
+import {  useState } from "react";
 
 import { usePathname } from "next/navigation";
-import { FaPersonMilitaryToPerson } from "react-icons/fa6";
 import useCurrentPath from "../_hooks/useCurrentPath";
 
 export default function SideBar() {
   const pathname = usePathname();
   const [storeName, setStoreName] = useState<string>("");
-
 
   const dashState = useCurrentPath();
 
@@ -32,17 +29,18 @@ export default function SideBar() {
         <Link
           href={"/Dashboard/Profile"}
           className={` flex items-center cursor-pointer transition-all duration-300 ease-in-out hover:bg-background p-2 ${
-            dashState === "Profile"
+            dashState === "Business Profile"
               ? "bg-background "
               : "text-muted-foreground"
           }`}
         >
           <User className="mr-2 h-4 w-4" />
-          <span>Profile</span>
+          <span>Business Profile</span>
         </Link>
         {/* <Link href={`/${session?.user?.name}/stores`}> */}
         <div>
-          <Link href={"/Dashboard/Stores"}
+          <Link
+            href={"/Dashboard/Stores"}
             className={` ${
               dashState === "Stores" ||
               dashState === "CreateStore" ||
@@ -92,14 +90,17 @@ export default function SideBar() {
               onClick={() => {dispatch(changeState("CreateStore"))}}
               href={`/dashboard/${session?.user?.name}/stores/createStore`}
             > */}
-            <Link href={"/Dashboard/Stores/CreateStores"}
+            <Link
+              href={"/Dashboard/Stores/CreateStores"}
               className={` ${
-                pathname === "Dashboard/Stores/CreateStores" ? "text-primary" : "text-trdbackground"
+                pathname === "Dashboard/Stores/CreateStores"
+                  ? "text-primary"
+                  : "text-trdbackground"
               } duration-300 ease-in-out  mt-2  flex items-center  w-full justify-start px-2 mb-4 relative`}
             >
               <div className="flex h-10 w-full items-center pl-4 hover:bg-secbackground">
-              <MdStorefront className="mr-2 h-4 w-4" />
-              Create Store
+                <MdStorefront className="mr-2 h-4 w-4" />
+                Create Store
               </div>
             </Link>
             {/* </Link> */}
@@ -110,18 +111,27 @@ export default function SideBar() {
           onClick={() => dispatch(changeState("Settings"))}
           href={`/dashboard/${session?.user?.name}/settings`}
         > */}
-        <Link href={"/Dashboard/Clients"}
+        <Link
+          href={"/Dashboard/Orders"}
           className={` flex items-center cursor-pointer transition-all duration-300 ease-in-out hover:bg-background p-2 ${
-            dashState === "Clients"
-              ? "bg-background"
-              : "text-muted-foreground"
+            dashState === "Orders" ? "bg-background" : "text-muted-foreground"
+          }`}
+        >
+          < MdOutlineReceiptLong className="mr-2 h-4 w-4" />
+          <span>Orders</span>
+        </Link>
+        <Link
+          href={"/Dashboard/Clients"}
+          className={` flex items-center cursor-pointer transition-all duration-300 ease-in-out hover:bg-background p-2 ${
+            dashState === "Clients" ? "bg-background" : "text-muted-foreground"
           }`}
         >
           <FiUsers className="mr-2 h-4 w-4" />
           <span>Clients</span>
         </Link>
         {/* </Link> */}
-        <Link href={"/Dashboard/Settings"}
+        <Link
+          href={"/Dashboard/Settings"}
           className={` flex items-center cursor-pointer transition-all duration-300 ease-in-out hover:bg-background p-2 ${
             dashState === "Settings"
               ? "bg-background  "
