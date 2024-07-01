@@ -15,14 +15,10 @@ const authenticatedStore = (req, res, next) => {
             const store = await Store.findOne({where: {id}});
             if (store.admin !== decode.user_id) return res.status(401).json({message: 'unauthorized'});
             req.user = decode;
+            next();
         }catch (error){
             return res.status(400).json({message: 'failed to get store'});
         }
-
-
-
-        req.user = decode;
-        next();
     });
 }
 

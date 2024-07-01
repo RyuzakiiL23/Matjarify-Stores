@@ -13,13 +13,24 @@ class StoreController {
             });
             return res.status(200).json({message: 'store created successfully'});
         }catch (error){
-            return res.status(500).json({message: 'failed to create store'})
+            return res.status(500).json({message: 'failed to create store'});
         } 
         
     }
 
     async update (req, res){
-        
+        const id = req.params.id;
+        const { name, description } = req.body;
+        try{
+            await Store.findOne({
+                where: {id}
+            }).then(async (store) => {
+                await store.update({name, description});
+            });
+            return res.status(200).json({message: 'store updated successfully'});
+        }catch (error){
+            return res.status(500).json({message: 'failed to update store'});
+        }
     }
 
     async show (_req, res){
