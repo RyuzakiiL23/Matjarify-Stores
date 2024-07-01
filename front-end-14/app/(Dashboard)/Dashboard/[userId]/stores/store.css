@@ -1,0 +1,28 @@
+.button-container {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    border: 1px solid #ccc;
+}
+
+.tab-button {
+    border: none;
+    background: none;
+    padding: 8px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    outline: none;
+    position: relative;
+    z-index: 1;
+    transition: color 0.3s ease; /* Transition for button text color */
+}
+
+.slider {
+    position: absolute;
+    top: 0;
+    height: 32px;
+    width: 25%; /* as there are four buttons */
+    transition: left 0.3s ease; /* Smooth transition for sliding */
+}
+
