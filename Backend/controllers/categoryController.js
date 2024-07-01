@@ -49,6 +49,7 @@ class CategoryController {
         const id = req.params.id
         try{
             const category = await Category.findOne({where: {id}});
+            if (!category) return res.status(404).json({message: 'category not found'});
             return res.status(200).json({category});
         }catch (error){
             return res.status(500).json({message: `failed to get category`});
@@ -59,7 +60,8 @@ class CategoryController {
         const id = req.params.id
         try{
             const category = await Category.findOne({where: {id}});
-            await category.destroy({where: {id}});
+            if (!category) return res.status(404).json({message: 'category not found'});
+            await category.destroy();
             return res.status(200).json({message: 'category deleted successfuly'});
         }catch (error){
             return res.status(500).json({message: `failed to delete category`});

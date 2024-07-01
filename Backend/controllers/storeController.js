@@ -1,5 +1,4 @@
 const { Store } = require('../models');
-const jwt = require('jsonwebtoken');
 
 class StoreController {
     async create (req, res){
@@ -15,7 +14,6 @@ class StoreController {
         }catch (error){
             return res.status(500).json({message: 'failed to create store'});
         } 
-        
     }
 
     async update (req, res){
@@ -47,7 +45,15 @@ class StoreController {
     }
 
     async destroy (req, res){
-        
+        const id = req.params.id;
+        try{
+            const store = await Store.findOne({ where: {id} });
+            if (!store) return res.status(404).json({message: 'store not found'});
+            await store.destroy();
+            return res.status(200).json({message: 'store deleted successfully'});
+        }catch (error){
+            return res.status(500).json({message: 'failed to get store entities'});
+        }
     }
 }
 

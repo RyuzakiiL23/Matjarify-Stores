@@ -6,6 +6,6 @@ const authenticatedStore = require('../middleware/authenticatedStore');
 router.post('/create', authenticated, storeController.create);
 router.put('/update/:id', authenticatedStore, storeController.update);
 router.get('/show/:id', authenticatedStore, storeController.show);
-router.delete('/destroy/:id', storeController.destroy);
+router.delete('/destroy/:id', authenticatedStore, storeController.destroy);
 
 module.exports = router;
