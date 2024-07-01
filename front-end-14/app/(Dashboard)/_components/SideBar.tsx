@@ -95,10 +95,12 @@ export default function SideBar() {
             <Link href={"/Dashboard/Stores/CreateStores"}
               className={` ${
                 pathname === "Dashboard/Stores/CreateStores" ? "text-primary" : "text-trdbackground"
-              } duration-300 ease-in-out  mt-2 ml-4 flex items-center hover:bg-gray-300 w-full justify-start py-2 mb-4`}
+              } duration-300 ease-in-out  mt-2  flex items-center  w-full justify-start px-2 mb-4 relative`}
             >
+              <div className="flex h-10 w-full items-center pl-4 hover:bg-secbackground">
               <MdStorefront className="mr-2 h-4 w-4" />
               Create Store
+              </div>
             </Link>
             {/* </Link> */}
           </div>
