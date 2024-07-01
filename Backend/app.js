@@ -3,10 +3,12 @@ const express = require('express');
 const { sequelize } = require('./models');
 const cors = require('cors')
 const corsOptions = require('./config/corsOptions');
-const authRoute = require('./routes/authRoute');
 const parseCookie = require('cookie-parser');
 const passport = require('passport');
 const session = require('express-session');
+const authRoute = require('./routes/authRoute');
+const categoryRoute = require('./routes/categoryRoute');
+const storeRoute = require('./routes/storeRoute');
 
 
 const app = express();
@@ -35,8 +37,10 @@ app.use(parseCookie());
 app.use(express.json());
 app.use(passport.initialize());
 app.use(passport.session());
-app.use('/auth', authRoute);
 
+app.use('/auth', authRoute);
+app.use('/category', categoryRoute);
+app.use('/store', storeRoute);
 
 app.get('*', async (_req, res) => {
   return res.status(401).json({message: 'No URI for that!'});

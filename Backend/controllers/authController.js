@@ -131,7 +131,7 @@ const googleAuth = (req, res) => {
     res.cookie('token', token, {
         httpOnly: true,
         sameSite: 'None', // strict 
-        secure: true, // only prod 'https'
+        // secure: true, // only prod 'https'
         maxAge: 3600000 * 24 * 7 // 7days
     });
 
@@ -155,7 +155,7 @@ const facebookAuth = (req, res) => {
     res.cookie('token', token, {
         httpOnly: true,
         sameSite: 'None', // strict 
-        secure: true, // only prod 'https'
+        // secure: true, // only prod 'https'
         maxAge: 3600000 * 24 * 7 // 7days
     });
 

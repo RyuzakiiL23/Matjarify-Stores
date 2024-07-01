@@ -3,10 +3,12 @@ const sequelize = require('../config/database');
 
 const Category = sequelize.define('Category', {
     name: {
-        type: DataTypes.STRING(128)
+        type: DataTypes.STRING(128),
+        allowNull: false
     },
     description: {
-        type: DataTypes.STRING
+        type: DataTypes.STRING,
+        allowNull: false
     },
     image: {
         type:  DataTypes.STRING(128)
