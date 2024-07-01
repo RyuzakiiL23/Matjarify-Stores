@@ -1,7 +1,15 @@
-import React from 'react'
+import React from "react";
+import DashHeading from "../_components/User/MiniLayout/DashHeading";
+import WelcomeToDash from "../_components/User/Profile/WelcomeToDash";
 
-export default function page() {
+function Page() {
+  const page = "Dashboard";
   return (
-    <div>dashboard</div>
-  )
+    <div className="flex flex-col h-full flex-grow px-20">
+      <DashHeading />
+      <WelcomeToDash />
+    </div>
+  );
 }
+
+export default Page;

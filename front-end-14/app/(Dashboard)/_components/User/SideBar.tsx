@@ -1,6 +1,6 @@
 "use client";
-import { FiHome, FiUsers } from "react-icons/fi";
-import { MdPerson, MdStorefront } from "react-icons/md";
+import { FiHome } from "react-icons/fi";
+import { MdStorefront } from "react-icons/md";
 import {
   CreditCard,
   Github,
@@ -9,51 +9,91 @@ import {
   Settings,
   User,
 } from "lucide-react";
+import { useSession, signOut } from "next-auth/react";
 import Link from "next/link";
+import { useSelector, useDispatch } from "react-redux";
+import { changeState } from "@/lib/Features/DashState/DashSlice";
 import type { RootState } from "@/lib/store";
 
-import { use, useEffect, useState } from "react";
-
-import { usePathname } from "next/navigation";
-import { FaPersonMilitaryToPerson } from "react-icons/fa6";
-import useCurrentPath from "../_hooks/useCurrentPath";
+import { useEffect, useState } from "react";
+import { IStoreDocument } from "@/models/storeModels";
+import { Types } from "mongoose";
+import { getStores } from "@/lib/actions/storeAction";
+import { SerializedStore } from "@/types/types";
 
 export default function SideBar() {
-  const pathname = usePathname();
+  const [isCollapsed, setIsCollapsed] = useState(true);
+  const { data: session } = useSession();
+  const dashState = useSelector((state: RootState) => state.dash.value);
+  const storeState = useSelector((state: RootState) => state.StoreState.value);
+  const dispatch = useDispatch();
   const [storeName, setStoreName] = useState<string>("");
 
+  const [stores, setStores] = useState< IStoreDocument[] | Types.ObjectId[] | undefined | SerializedStore[]>([]);
+  const [waiting, setWaiting] = useState(false);
 
-  const dashState = useCurrentPath();
+  const revalidate = getStores
 
+  useEffect(() => {
+
+  }, [dashState])
+
+
+  useEffect(() => {
+    const fetchStores = async () => {
+      setWaiting(true);
+      try {
+        const storesInfo = await getStores();
+        setStores(storesInfo);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    setWaiting(false);
+    fetchStores();
+  }, []);
   return (
     <div className="relative flex flex-col text-sm font-semibold justify-between p-4 h-full">
       <div className="flex flex-col gap-2">
         <div className="py-8">Dashboard</div>
         <Link
-          href={"/Dashboard/Profile"}
-          className={` flex items-center cursor-pointer transition-all duration-300 ease-in-out hover:bg-background p-2 ${
-            dashState === "Profile"
-              ? "bg-background "
-              : "text-muted-foreground"
-          }`}
+          onClick={() => dispatch(changeState("Profile"))}
+          href={`/dashboard/${session?.user?.name}/profile`}
         >
-          <User className="mr-2 h-4 w-4" />
-          <span>Profile</span>
+          <div
+            className={` flex items-center cursor-pointer transition-all duration-300 ease-in-out hover:bg-background p-2 ${
+              dashState === "Profile"
+                ? "bg-background text-foreground rounded-lg "
+                : "text-muted-foreground"
+            }`}
+          >
+            <User className="mr-2 h-4 w-4" />
+            <span>Profile</span>
+          </div>
         </Link>
         {/* <Link href={`/${session?.user?.name}/stores`}> */}
         <div>
-          <Link href={"/Dashboard/Stores"}
+          <div
             className={` ${
               dashState === "Stores" ||
               dashState === "CreateStore" ||
               dashState === storeName
-                ? "bg-background "
+                ? "bg-background text-foreground rounded-lg "
                 : "text-muted-foreground"
             }  flex items-center cursor-pointer transition-all duration-300 ease-in-out hover:bg-background p-2`}
+            onClick={() =>
+              {dispatch(
+                changeState(
+                  dashState === "Stores" || dashState === "CreateStore" || dashState === storeName
+                    ? ''
+                    : "Stores"
+                )
+              )}
+            }
           >
             <MdStorefront className="mr-2 h-4 w-4" />
             <span className="flex justify-between">Stores </span>
-          </Link>
+          </div>
 
           <div
             className={`transition-all bg-background duration-300 ease-in-out overflow-hidden ${
@@ -65,7 +105,7 @@ export default function SideBar() {
             }`}
           >
             <div>
-              {/* {stores && stores.map((store) => (
+              {stores && stores.map((store) => (
                 <Link
                   key={store._id}
                   onClick={() => {
@@ -85,50 +125,46 @@ export default function SideBar() {
                     {(store as IStoreDocument).storeName}
                   </button>
                 </Link>
-              ))} */}
+              ))}
             </div>
 
-            {/* <Link
+            <Link
               onClick={() => {dispatch(changeState("CreateStore"))}}
               href={`/dashboard/${session?.user?.name}/stores/createStore`}
-            > */}
-            <Link href={"/Dashboard/Stores/CreateStores"}
-              className={` ${
-                pathname === "Dashboard/Stores/CreateStores" ? "text-primary" : "text-trdbackground"
-              } duration-300 ease-in-out  mt-2 ml-4 flex items-center hover:bg-gray-300 w-full justify-start py-2 mb-4`}
             >
-              <MdStorefront className="mr-2 h-4 w-4" />
-              Create Store
+              <button
+                className={` ${
+                  dashState === "CreateStore" ? "" : "text-muted-foreground"
+                } duration-300 ease-in-out  mt-2 ml-4 flex items-center hover:bg-gray-300 w-full justify-start py-2 mb-4`}
+              >
+                <MdStorefront className="mr-2 h-4 w-4" />
+                Create Store
+              </button>
             </Link>
-            {/* </Link> */}
           </div>
         </div>
         {/* </Link> */}
-        {/* <Link
+        <Link
           onClick={() => dispatch(changeState("Settings"))}
           href={`/dashboard/${session?.user?.name}/settings`}
-        > */}
-        <Link href={"/Dashboard/Clients"}
-          className={` flex items-center cursor-pointer transition-all duration-300 ease-in-out hover:bg-background p-2 ${
-            dashState === "Clients"
-              ? "bg-background"
-              : "text-muted-foreground"
-          }`}
         >
-          <FiUsers className="mr-2 h-4 w-4" />
-          <span>Clients</span>
+          <div
+            className={` flex items-center cursor-pointer transition-all duration-300 ease-in-out hover:bg-background p-2 ${
+              dashState === "Settings"
+                ? "bg-background text-foreground rounded-lg "
+                : "text-muted-foreground"
+            }`}
+          >
+            <Settings className="mr-2 h-4 w-4" />
+            <span>Settings</span>
+          </div>
         </Link>
-        {/* </Link> */}
-        <Link href={"/Dashboard/Settings"}
-          className={` flex items-center cursor-pointer transition-all duration-300 ease-in-out hover:bg-background p-2 ${
-            dashState === "Settings"
-              ? "bg-background  "
-              : "text-muted-foreground"
-          }`}
+        <div
+          className={`text-muted-foreground flex items-center cursor-pointer transition-all duration-300 ease-in-out hover:bg-background p-2`}
         >
-          <Settings className="mr-2 h-4 w-4" />
-          <span>Settings</span>
-        </Link>
+          <Github className="mr-2 h-4 w-4" />
+          <span>GitHub</span>
+        </div>
         <div
           className={`text-muted-foreground flex items-center cursor-pointer transition-all duration-300 ease-in-out hover:bg-background p-2`}
         >
@@ -146,14 +182,14 @@ export default function SideBar() {
         <Link href="/">
           <div className="flex items-center ">
             <FiHome className="mr-2  h-4 w-4" />
-            <span>Home</span>
+            <span>Matjarify</span>
           </div>
         </Link>
         <div />
         <div
-          //   onClick={() => {
-          //     signOut({ callbackUrl: "/" });
-          //   }}
+          onClick={() => {
+            signOut({ callbackUrl: "/" });
+          }}
           className=" pb-10 text-red-700 hover:text-red-500 ease-in duration-150 font-bold flex items-center cursor-pointer"
         >
           <LogOut className="mr-2 h-4 w-4" />

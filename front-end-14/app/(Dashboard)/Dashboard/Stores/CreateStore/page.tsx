@@ -1,28 +1,16 @@
 "use client";
-import DashHeading from "@/components/User/MiniLayout/DashHeading";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import React, { use, useEffect, useState } from "react";
 import { FiPhone } from "react-icons/fi";
 import { MdLocationOn, MdOutlineEmail, MdStorefront } from "react-icons/md";
-import { auth } from "@/auth";
-import { createStore } from "@/lib/actions/storeAction";
-import { useDispatch } from "react-redux";
-// import { incremant } from "@/lib/Features/StoreState/StoreSlice";
-import { useSession } from "next-auth/react";
-import { hasNonEmptyString } from "@/lib/utils";
-import { useToast } from "@/components/ui/use-toast";
-import { Toaster } from "@/components/ui/toaster";
 import { redirect } from "next/navigation";
-import { incremant } from "@/lib/Features/StoreState/StoreSlice";
-import { changeState } from "@/lib/Features/DashState/DashSlice";
+import DashHeading from "@/app/(Dashboard)/_components/User/MiniLayout/DashHeading";
 
 export default function Page() {
   const [storeName, setStoreName] = useState<string>("");
   const page = "Stores";
-  const { data: session } = useSession();
-  const dispatch = useDispatch();
   const [thereIsError, setThereIsError] = useState(false);
   const [storeCreated, setStoreCreated] = useState(false);
 
@@ -43,71 +31,66 @@ export default function Page() {
     storePostCode: "",
     storeBusinessName: "",
   });
-  console.log(errorRes);
-  const { toast } = useToast();
   const [duplicatedName, setDuplicatedName] = useState(false);
 
-  const clientAction = async (formData: FormData) => {
-    const store = formData.get("storeName");
-    setStoreName(store as string)
-    let res: any;
-    try {
-      res = await createStore(formData);
-      console.log(res);
-      if (res.duplicated) {
-        setThereIsError(false);
-        setDuplicatedName(true);
-        toast({
-          variant: "destructive",
-          description: "Store name already exists.",
-        });
-      }
-      else if (res.error) {
-        console.log(res.error);
-        setDuplicatedName(false);
-        setErrorRes(res.error);
-        setThereIsError(true);
-        toast({
-          variant: "destructive",
-          description: "One or multiple fields required.",
-        });
-      } else {
-        setDuplicatedName(false);
-        setThereIsError(false);
-        setErrorRes({
-          storeName: "",
-          storeAddress: "",
-          storeEmail: "",
-          storePhone: "",
-          storeCity: "",
-          storePostCode: "",
-          storeBusinessName: "",
-        });
-        setStoreCreated(true);
-        toast({
-          variant: "storeSuccess",
-          description: "Store created.",
-        });
-      }
-    } catch (error) {
-      console.log(error);
-    }
+  // const clientAction = async (formData: FormData) => {
+  //   const store = formData.get("storeName");
+  //   setStoreName(store as string)
+  //   let res: any;
+  //   try {
+  //     res = await createStore(formData);
+  //     console.log(res);
+  //     if (res.duplicated) {
+  //       setThereIsError(false);
+  //       setDuplicatedName(true);
+  //       toast({
+  //         variant: "destructive",
+  //         description: "Store name already exists.",
+  //       });
+  //     }
+  //     else if (res.error) {
+  //       console.log(res.error);
+  //       setDuplicatedName(false);
+  //       setErrorRes(res.error);
+  //       setThereIsError(true);
+  //       toast({
+  //         variant: "destructive",
+  //         description: "One or multiple fields required.",
+  //       });
+  //     } else {
+  //       setDuplicatedName(false);
+  //       setThereIsError(false);
+  //       setErrorRes({
+  //         storeName: "",
+  //         storeAddress: "",
+  //         storeEmail: "",
+  //         storePhone: "",
+  //         storeCity: "",
+  //         storePostCode: "",
+  //         storeBusinessName: "",
+  //       });
+  //       setStoreCreated(true);
+  //       toast({
+  //         variant: "storeSuccess",
+  //         description: "Store created.",
+  //       });
+  //     }
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
 
-  };
-useEffect(() => {
-  if (storeCreated === true) {
-    window.location.href = `/dashboard/${session?.user?.name}/stores/${storeName}`;
-  }
-}, [storeCreated, session?.user?.name, storeName])
+  // };
+// useEffect(() => {
+//   if (storeCreated === true) {
+//     window.location.href = `/dashboard/${session?.user?.name}/stores/${storeName}`;
+//   }
+// }, [storeCreated, session?.user?.name, storeName])
 
-  console.log(errorRes);
   return (
     <div className="px-20 flex flex-grow flex-col h-full ">
-      <DashHeading page={page} />
+      <DashHeading/>
       <form
-        action={async (FormData) => {
-          await clientAction(FormData);
-        }}
+        action=''
       >
         <div className="relative flex flex-col gap-4 w-full h-full bg-background rounded-2xl shadow-md border p-8 ">
           <div className="flex flex-col md:flex-row gap-8">
@@ -152,7 +135,7 @@ useEffect(() => {
                 } h-10 rounded-md p-2 text-sm text-foreground font- bg-input`}
                 type="email"
                 name="storeEmail"
-                defaultValue={session?.user?.email ?? ""}
+                // defaultValue={session?.user?.email ?? ""}
               />
             </div>
 
@@ -229,7 +212,6 @@ useEffect(() => {
             One or multiple fields required
           </span>
           <Button
-            onClick={() => dispatch(incremant())}
             className=""
             type="submit"
           >
@@ -237,8 +219,6 @@ useEffect(() => {
           </Button>
         </div>
       </form>
-
-      <Toaster />
     </div>
   );
 }

@@ -25,10 +25,10 @@ export default async function RootLayout({
             <NavBarDash />
         </div>
         <div className=" flex flex-grow h-screen w-full relative pt-6">
-          <div className="top-8 w-64 left-0 h-full fixed z-49 overflow-auto bg-input">
+          <div className="top-8 w-64 left-0 h-full fixed z-49 overflow-auto bg-secbackground">
           <SideBar />
           </div>
-          <div className=" bg-secondary h-full w-full ml-64">{children}</div>
+          <div className=" bg-background h-full w-full ml-64">{children}</div>
         </div>
       </div>
   );

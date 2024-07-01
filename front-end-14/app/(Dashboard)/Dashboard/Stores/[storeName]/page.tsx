@@ -2,20 +2,17 @@
 
 import React, { useState, useRef } from "react";
 import "../store.css";
-import DashHeading from "@/components/User/MiniLayout/DashHeading";
+// import DashHeading from "@/components/User/MiniLayout/DashHeading";
 import { Store } from "lucide-react";
-import StoreInfo from "@/components/User/Stores/CreateStore/StoreInfo";
-import Products from "@/components/User/Stores/CreateStore/Products";
-import Divers from "@/components/User/Stores/CreateStore/Divers";
-import Collections from "@/components/User/Stores/CreateStore/Collections";
-import { useSelector } from "react-redux";
-import { RootState } from "@/lib/store";
+import DashHeading from "@/app/(Dashboard)/_components/User/MiniLayout/DashHeading";
+import StoreInfo from "@/app/(Dashboard)/_components/User/Stores/CreateStore/StoreInfo";
+import Products from "@/app/(Dashboard)/_components/User/Stores/CreateStore/Products";
+import Collections from "@/app/(Dashboard)/_components/User/Stores/CreateStore/Collections";
+import Divers from "@/app/(Dashboard)/_components/User/Stores/CreateStore/Divers";
 
-function Page({ params }: { params: { storeName: string } }) {
-  const page = "Stores";
+function Page() {
   const [activeTab, setActiveTab] = useState(0);
   const [selectedTab, setSelectedTab] = useState("Store info");
-  const dashState = useSelector((state: RootState) => state.dash.value);
 
   const moveSlider = (index: any) => {
     setActiveTab(index);
@@ -25,7 +22,7 @@ function Page({ params }: { params: { storeName: string } }) {
     <div className="px-20 flex flex-col flex-grow h-full  ">
       {/* we replaced the params with Redux variable */}
       {/* <DashHeading name={params.storeName} page={page} /> */}
-      <DashHeading name={dashState} page={page} />
+      <DashHeading/>
       <div className="relative w-full h-full bg-background rounded-t-2xl shadow-md border-primary border border-t-0">
         <div className=" relative flex w-full h-8  justify-between items-center font-semibold text-sm border-b-primary border-b ">
           <div
