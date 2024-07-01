@@ -21,14 +21,17 @@ export default function LogIn() {
     const email = formData.get("email");
     const password = formData.get("password");
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/login`, {
-        method: "POST",
-        credentials: "include", // Include cookies in the request
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email, password }),
-      });
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/login`,
+        {
+          method: "POST",
+          credentials: "include", // Include cookies in the request
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ email, password }),
+        }
+      );
       const res = await response.json();
       if (response.ok) {
         console.log(res);
@@ -43,23 +46,29 @@ export default function LogIn() {
   };
 
   const signUp = async (formData: FormData) => {
-    const fullName = formData.get("fullName");
     const email = formData.get("email");
     const password = formData.get("password");
     const confirmPassword = formData.get("confirmPass");
-    try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/register`, {
-        method: "POST",
-        credentials: "include", // Include cookies in the request
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ fullName, email, password, confirmPassword }),
-      });
+    const firstName = formData.get("firstName");
+    const lastName = formData.get("lastName");
 
+    try {
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/register`,
+        {
+          method: "POST",
+          credentials: "include", // Include cookies in the request
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ firstName , lastName , email, password, confirmPassword }),
+        }
+      );
+
+      const res = await response.json();
       if (response.ok) {
         // Store user info in local storage or state management
-        localStorage.setItem("user", JSON.stringify(response));
+        localStorage.setItem("user", JSON.stringify(res));
         dispatch(AuthenticatedState());
         dispatch(SignUpClose());
       }
@@ -203,14 +212,29 @@ export default function LogIn() {
               </div>
               {/* SignUp Form */}
 
-              <form action={signUp}>
-                <label htmlFor="fullName">Full Name</label>
-                <input
-                  type="text"
-                  placeholder="Full Name"
-                  name="fullName"
-                  className="w-full h-10 bg-input p-2 rounded-lg mb-2"
-                />
+              <form className="w-full relative" action={signUp}>
+                <div className="flex gap-4 w-full">
+                  <div className="w-full">
+                    <label htmlFor="lastName">Last Name</label>
+                    <input
+                      type="text"
+                      placeholder="Last Name"
+                      name="lastName"
+                      className="w-full h-10 bg-input p-2 rounded-lg mb-2"
+                    />
+                  </div>
+
+                  <div className="w-full">
+                    <label htmlFor="firstName">First Name</label>
+                    <input
+                      type="text"
+                      placeholder="First Name"
+                      name="firstName"
+                      className="w-full h-10 bg-input p-2 rounded-lg mb-2"
+                    />
+                  </div>
+
+                </div>
                 <label htmlFor="email">Email</label>
                 <input
                   type="email"

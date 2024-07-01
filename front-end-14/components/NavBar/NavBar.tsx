@@ -12,7 +12,7 @@ import { useEffect, useState } from "react";
 import { NotAuthenticatedState } from "@/lib/features/AuthSlice";
 import { TbLogout2 } from "react-icons/tb";
 import ProfileDialog from "./ProfileDialog";
-import { useRouter } from 'next/navigation'
+import { useRouter } from "next/navigation";
 
 export default function NavBar() {
   const router = useRouter();
@@ -60,7 +60,7 @@ export default function NavBar() {
       }
     );
     if (res.ok) {
-      router.push('/')
+      router.push("/");
       cookies.remove("token");
       setOpen(false);
       dispatch(NotAuthenticatedState());
@@ -134,26 +134,7 @@ export default function NavBar() {
             </div>
           </div>
         ) : user === "wait" ? null : (
-          <div
-            className="cursor-pointer relative group"
-            onMouseEnter={() => setHover(true)}
-            onMouseLeave={() => setHover(false)}
-          >
-            <div className="flex relative hover:opacity-85 border-primary duration-300 ease-in-out justify-center items-center overflow-hidden bg-primary text-secondary h-10 w-10 rounded-full ">
-              <span className="p-0 m-0 text-4xl pb-2 font-bold ">
-                {user.name.slice(0, 1)}
-              </span>
-            </div>
-            <div className="absolute  top-12 left-[-180px]  lg:left-0">
-              <div
-                onMouseEnter={() => setHover(true)}
-                onMouseLeave={() => setHover(false)}
-                className={open ? `bg-primary ${hover ? 'bg-opacity-100' : 'bg-opacity-0' } duration-500 transition-all h-fit w-56 rounded-lg` : "hidden"}
-              >
-                <ProfileDialog logOut={logOut} hover={hover}/>
-              </div>
-            </div>
-          </div>
+          <ProfileDialog />
         )}
 
         <div className="hidden lg:flex gap-4">
