@@ -21,17 +21,14 @@ export default function LogIn() {
     const email = formData.get("email");
     const password = formData.get("password");
     try {
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/login`,
-        {
-          method: "POST",
-          credentials: "include", // Include cookies in the request
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ email, password }),
-        }
-      );
+      const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/login`, {
+        method: "POST",
+        credentials: "include", // Include cookies in the request
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      });
       const res = await response.json();
       if (response.ok) {
         console.log(res);
@@ -46,29 +43,23 @@ export default function LogIn() {
   };
 
   const signUp = async (formData: FormData) => {
+    const fullName = formData.get("fullName");
     const email = formData.get("email");
     const password = formData.get("password");
     const confirmPassword = formData.get("confirmPass");
-    const firstName = formData.get("firstName");
-    const lastName = formData.get("lastName");
-
     try {
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/register`,
-        {
-          method: "POST",
-          credentials: "include", // Include cookies in the request
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ firstName , lastName , email, password, confirmPassword }),
-        }
-      );
+      const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/register`, {
+        method: "POST",
+        credentials: "include", // Include cookies in the request
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ fullName, email, password, confirmPassword }),
+      });
 
-      const res = await response.json();
       if (response.ok) {
         // Store user info in local storage or state management
-        localStorage.setItem("user", JSON.stringify(res));
+        localStorage.setItem("user", JSON.stringify(response));
         dispatch(AuthenticatedState());
         dispatch(SignUpClose());
       }
@@ -130,14 +121,14 @@ export default function LogIn() {
                   type="email"
                   placeholder="Email"
                   name="email"
-                  className="w-full h-10 bg-input p-2 rounded-lg my-4"
+                  className="mt-1 mb-4 p-2 w-full border-b border-gray-300 focus:outline-none bg-background"
                 />
                 <label htmlFor="password">Password</label>
                 <input
                   type="password"
                   name="password"
                   placeholder="Password"
-                  className="w-full h-10 bg-input p-2 rounded-lg my-4"
+                  className="mt-1 mb-4 p-2 w-full border-b border-gray-300 focus:outline-none bg-background"
                 />
                 <button className="w-full h-14 bg-primary text-secondary rounded-lg">
                   Log In
@@ -212,52 +203,37 @@ export default function LogIn() {
               </div>
               {/* SignUp Form */}
 
-              <form className="w-full relative" action={signUp}>
-                <div className="flex gap-4 w-full">
-                  <div className="w-full">
-                    <label htmlFor="lastName">Last Name</label>
-                    <input
-                      type="text"
-                      placeholder="Last Name"
-                      name="lastName"
-                      className="w-full h-10 bg-input p-2 rounded-lg mb-2"
-                    />
-                  </div>
-
-                  <div className="w-full">
-                    <label htmlFor="firstName">First Name</label>
-                    <input
-                      type="text"
-                      placeholder="First Name"
-                      name="firstName"
-                      className="w-full h-10 bg-input p-2 rounded-lg mb-2"
-                    />
-                  </div>
-
-                </div>
+              <form action={signUp}>
+                <label htmlFor="fullName">Full Name</label>
+                <input
+                  type="text"
+                  placeholder="Full Name"
+                  name="fullName"
+                  className="mt-1 mb-4 p-2 w-full border-b border-gray-300 focus:outline-none bg-background"
+                />
                 <label htmlFor="email">Email</label>
                 <input
                   type="email"
                   placeholder="Email"
                   name="email"
-                  className="w-full h-10 bg-input p-2 rounded-lg mb-2"
+                  className="mt-1 mb-4 p-2 w-full border-b border-gray-300 focus:outline-none bg-background"
                 />
                 <label htmlFor="password">Password</label>
                 <input
                   type="password"
                   name="password"
                   placeholder="Password"
-                  className="w-full h-10 bg-input p-2 rounded-lg mb-2"
+                  className="mt-1 mb-4 p-2 w-full border-b border-gray-300 focus:outline-none bg-background"
                 />
                 <label htmlFor="confirmPass">Confirm Password</label>
                 <input
                   type="password"
                   name="confirmPass"
                   placeholder="Confirm Password"
-                  className="w-full h-10 bg-input p-2 rounded-lg mb-2"
+                  className="mt-1 mb-4 p-2 w-full border-b border-gray-300 focus:outline-none bg-background"
                 />
                 <button className="w-full h-14 bg-primary text-secondary rounded-lg">
-                  Log In
+                  Create Account
                 </button>
               </form>
               <div className="flex justify-between mt-4">
