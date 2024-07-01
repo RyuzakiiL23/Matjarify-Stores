@@ -33,8 +33,17 @@ class StoreController {
         }
     }
 
-    async show (_req, res){
-        
+    async show (req, res){
+        const id = req.params.id;
+        try{
+            await Store.findOne({
+                where: {id}
+            }).then((store) => {
+                return res.status(200).json(store);
+            });
+        }catch (error){
+            return res.status(500).json({message: 'failed to get store entities'});
+        }
     }
 
     async destroy (req, res){
