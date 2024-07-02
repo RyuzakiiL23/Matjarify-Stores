@@ -61,7 +61,13 @@ export default function LogIn() {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ firstName , lastName , email, password, confirmPassword }),
+          body: JSON.stringify({
+            firstName,
+            lastName,
+            email,
+            password,
+            confirmPassword,
+          }),
         }
       );
 
@@ -130,14 +136,14 @@ export default function LogIn() {
                   type="email"
                   placeholder="Email"
                   name="email"
-                  className="w-full h-10 bg-input p-2 rounded-lg my-4"
+                  className="mt-1 mb-4 p-2 w-full border-b border-gray-300 focus:outline-none bg-background"
                 />
                 <label htmlFor="password">Password</label>
                 <input
                   type="password"
                   name="password"
                   placeholder="Password"
-                  className="w-full h-10 bg-input p-2 rounded-lg my-4"
+                  className="mt-1 mb-4 p-2 w-full border-b border-gray-300 focus:outline-none bg-background"
                 />
                 <button className="w-full h-14 bg-primary text-secondary rounded-lg">
                   Log In
@@ -220,7 +226,7 @@ export default function LogIn() {
                       type="text"
                       placeholder="Last Name"
                       name="lastName"
-                      className="w-full h-10 bg-input p-2 rounded-lg mb-2"
+                      className="mt-1 mb-4 p-2 w-full border-b border-gray-300 focus:outline-none bg-background"
                     />
                   </div>
 
@@ -230,31 +236,30 @@ export default function LogIn() {
                       type="text"
                       placeholder="First Name"
                       name="firstName"
-                      className="w-full h-10 bg-input p-2 rounded-lg mb-2"
+                      className="mt-1 mb-4 p-2 w-full border-b border-gray-300 focus:outline-none bg-background"
                     />
                   </div>
-
                 </div>
                 <label htmlFor="email">Email</label>
                 <input
                   type="email"
                   placeholder="Email"
                   name="email"
-                  className="w-full h-10 bg-input p-2 rounded-lg mb-2"
+                  className="mt-1 mb-4 p-2 w-full border-b border-gray-300 focus:outline-none bg-background"
                 />
                 <label htmlFor="password">Password</label>
                 <input
                   type="password"
                   name="password"
                   placeholder="Password"
-                  className="w-full h-10 bg-input p-2 rounded-lg mb-2"
+                  className="mt-1 mb-4 p-2 w-full border-b border-gray-300 focus:outline-none bg-background"
                 />
                 <label htmlFor="confirmPass">Confirm Password</label>
                 <input
                   type="password"
                   name="confirmPass"
                   placeholder="Confirm Password"
-                  className="w-full h-10 bg-input p-2 rounded-lg mb-2"
+                  className="mt-1 mb-4 p-2 w-full border-b border-gray-300 focus:outline-none bg-background"
                 />
                 <button className="w-full h-14 bg-primary text-secondary rounded-lg">
                   Log In
